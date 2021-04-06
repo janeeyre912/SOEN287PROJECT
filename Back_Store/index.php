@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_name'])){
 ?>
 
 <?php
-              if($_SERVER['REQUEST_URI'] == "/SOEN287PROJECT/Back_Store/" || $_SERVER['REQUEST_URI'] == "/SOEN287PROJECT/Back_Store/index.php")  {
+              if($_SERVER['REQUEST_URI'] == "http://fastgroceries.herokuapp.com/Back_Store/" || $_SERVER['REQUEST_URI'] == "http://fastgroceries.herokuapp.com/Back_Store/index.php")  {
 
 
                   include(TEMPLATE_BACK . "/admin_content.php");
