@@ -1,7 +1,5 @@
 <?php require_once("../resources/config.php");?>
-<?php include(TEMPLATE_BACK . "/header.php"); 
-echo $_SERVER['REQUEST_URI'];
-?>
+<?php include(TEMPLATE_BACK . "/header.php"); ?>
 
 <?php
 if(!isset($_SESSION['user_name'])){
@@ -11,7 +9,7 @@ if(!isset($_SESSION['user_name'])){
 ?>
 
 <?php
-              if($_SERVER['REQUEST_URI'] == "http://fastgroceries.herokuapp.com/Back_Store/" || $_SERVER['REQUEST_URI'] == "http://fastgroceries.herokuapp.com/Back_Store/index.php")  {
+              if($_SERVER['REQUEST_URI'] == "/Back_Store/" || $_SERVER['REQUEST_URI'] == "/Back_Store/index.php")  {
 
 
                   include(TEMPLATE_BACK . "/admin_content.php");
