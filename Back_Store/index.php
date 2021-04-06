@@ -1,5 +1,7 @@
 <?php require_once("../resources/config.php");?>
-<?php include(TEMPLATE_BACK . "/header.php"); ?>
+<?php include(TEMPLATE_BACK . "/header.php"); 
+echo $_SERVER['REQUEST_URI'];
+?>
 
 <?php
 if(!isset($_SESSION['user_name'])){
