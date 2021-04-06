@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users_list>
+<user>
+  <id>1</id>
+  <type>admin</type>
+  <username>lin</username>
+  <lastname>ling</lastname>
+  <firstname>lin</firstname>
+  <password>Abcd@123</password>
+  <telephone>514432666</telephone>
+  <email>lin@gmail.com</email>
+</user>
+<user>
+  <id>2</id>
+  <type>base</type>
+  <username>john</username>
+  <lastname>smith</lastname>
+  <firstname>john</firstname>
+  <password>Efgh#123</password>
+  <telephone>514472666</telephone>
+  <email>john@gmail.com</email>
+</user>s
+<user>
+  <id>3</id>
+  <type>base</type>
+  <username>paul</username>
+  <lastname>walker</lastname>
+  <firstname>paul</firstname>
+  <password>Edsf#346</password>
+  <telephone>514372886</telephone>
+  <email>paul@gmail.com</email>
+</user>
+<user><id>4</id><type>admin</type><username>james</username><lastname>James</lastname><firstname>Green</firstname><password>defc@123</password><telephone>514788999</telephone><email>james@gmail.com</email></user><user><id>5</id><type>admin</type><username>jim</username><lastname>Jim</lastname><firstname>Green</firstname><password>nhy#123</password><telephone>5146778909</telephone><email>jim@gmail.com</email></user></users_list>

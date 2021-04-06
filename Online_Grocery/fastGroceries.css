@@ -1,0 +1,282 @@
+body {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*header*/
+.header {
+  background-color: #ffc85c;
+  height: 125px;
+  color: #c05555;
+  font-style: italic;
+  text-align: center;
+  width: 100%;
+  padding: 20px 10px;
+}
+
+/*login div*/
+.login {
+  font-size: 20px;
+  font-style: italic;
+  color: #59886b;
+  width: 10%;
+  margin-right: 70px;
+}
+
+.register {
+  font-size: 20px;
+  font-style: italic;
+  color: #59886b;
+  width: 10%;
+  margin-right: 50px;
+}
+
+.adminLogin {
+  font-size: 20px;
+  font-style: italic;
+  color: #59886b;
+  width: 19%;
+  margin-left: 15px;
+}
+
+.logAccount {
+  background-color: #fff8c1;
+  text-align: center;
+  width: 100%;
+}
+
+/*navbar div*/
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+
+  height: 50px;
+
+  background-color: #c05555;
+  color: #c05555;
+
+  text-align: center;
+  z-index: 10;
+}
+
+.navbarSticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.btn {
+  color: #fff8c1;
+}
+
+.navbar-nav {
+  text-align: center;
+}
+
+.nav-link {
+  color: white;
+  background-color: #c05555;
+  font-size: large;
+  font-style: italic;
+  text-align: center;
+}
+
+.form-inline {
+  margin-right: 10px;
+}
+
+.nav-link.dropdown-toggle {
+  color: white;
+  font-size: large;
+  font-style: italic;
+  text-align: center;
+}
+
+.navbar-toggler {
+  background-color: pink;
+  width: 100%;
+  text-align: center;
+}
+
+.topnav-right {
+  margin-left: auto;
+}
+
+/*aside navbar*/
+.aside {
+  background-color: #ffe8e8;
+  height: 100vh;
+  text-align: left;
+  float: left;
+  padding: 50px 30px;
+  font-size: large;
+}
+
+.sidebar {
+  color: #c05555;
+  font-size: large;
+  font-style: italic;
+}
+
+/*body*/
+
+#customerLogin {
+  margin-top: 2%;
+  color: #59886b;
+  font-size: 60px;
+  font-family: Georgia;
+  text-align: center;
+}
+
+.signInColumn {
+  width: 150px;
+  color: #32754c;
+  font-size: 30px;
+  margin-bottom: 2%;
+}
+
+.email {
+  margin-top: 2%;
+  color: #5e9071;
+  font-size: 20px;
+}
+
+.subtitle {
+  color: #c05555;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.input-group .button-minus {
+  margin-left: 30%;
+  background-color: #c05555;
+  color: white;
+  width: 8%;
+}
+
+.input-group .quantity-field {
+  width: 40px;
+  text-align: center;
+}
+
+.input-group .button-plus {
+  background-color: #3c3c3c;
+  color: white;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.homeImg1 {
+  position: relative;
+  z-index: -1;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.homeImg2 {
+  position: relative;
+  z-index: -1;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: 80%;
+}
+
+/* Submenu item*/
+.submenu {
+  background-color: #ffc85c;
+  color: #000000;
+  font-style: italic;
+}
+
+.subsubmenu {
+  background-color: #fff8c1;
+  color: #000000;
+  font-style: italic;
+}
+
+/*item list*/
+.item {
+  font-size: 16px;
+  font-style: bold;
+  color: #c05555;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  z-index: -1;
+}
+
+.itemImg {
+  position: relative;
+  z-index: -1;
+  top: 0;
+  width: 100%;
+  border: 1px black;
+  padding: 10px;
+  display: block;
+}
+
+/*
+Add to cart button class.
+*/
+.btn.btn-danger.cart-btn {
+  z-index: initial;
+}
+
+.btn.btn-danger {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+/*footer*/
+.footerText {
+  color: #fff8c1;
+  font-style: italic;
+  font-size: 18px;
+}
+
+.footer {
+  margin-top: 50px;
+  padding-bottom: 10px;
+  height: auto;
+  background-color: #59886b;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #cccccc;
+  padding-top: 10px;
+  font-size: small;
+}
+
+/*P3*/
+body {
+  overflow: scroll;
+}
+
+.product {
+  min-height: 70vh;
+  margin-top: 30px;
+}
+
+.product_description {
+  margin-top: 30px;
+}
+
+.btn-danger {
+  margin-top: 10px;
+}
