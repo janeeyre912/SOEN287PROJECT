@@ -1,10 +1,12 @@
 <?php require_once("../resources/config.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
+<h3 class="text-center bg-warning"><?php display_message(); ?></h3>
+ <?php login_user(); ?>
 <div class="row justify-content-center">
   <div class="col-lg-8">
     <h2 id="customerLogin">Customer Login</h2>
     <p class="signInColumn">Sign In</p>
-     <?php login_user(); ?>
+    
     <form  class="" action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="exampleInputEmail1" ; style="font-size: 20px">
