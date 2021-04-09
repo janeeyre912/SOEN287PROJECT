@@ -72,8 +72,11 @@ function login_user(){
       redirect("../Online_Grocery");
      }
  else{
-       //set_message("Your Password or email address are wrong.");
+       session_destroy();
+       session_start();
+       set_message("Your Password or email address are wrong.");
        redirect("login.php");
+       
      }
   }
 }
