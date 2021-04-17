@@ -140,5 +140,331 @@ function add_user(){
 
 }
 
+function displayProductList(){
+
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach ($xml->children() as $product){
+
+    $product_id = $product->itemNb;
+    $productName = $product->name;
+    $productAisle = $product->aisle;
+    $productPrice = $product->price;
+    $productStock = $product->stock;
+
+    $productlist = <<<DELIMETER
+    <tr role="row">
+        <td row="cell">{$product_id}</td>
+        <td row="cell">{$productName}</td>
+        <td row="cell">{$productAisle}</td>
+        <td row="cell">{$productPrice}</td>
+        <td row="cell">{$productStock}</td>
+        <td>
+            <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_product&itemNb={$product->itemNb}'">Edit</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_user_id={$user->id}'">Delete</button>
+        </td> 
+    </tr> 
+    
+    DELIMETER;
+    
+    echo $productlist;
+  }
+    
+
+}
+
+function displayProduct(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach ($xml->children() as $product){
+    
+    if($product->itemNb == $_GET['itemNb']){
+      $id = $product->itemNb;
+      $name = $product->name;
+      $price= $product->price;
+      $ext = $product->ext;
+      $desc= $product->desc;
+      $image = $name . "." . $ext;
+      break;
+    }
+  }
+
+  
+    
+    $productInfo = <<<DELIMETER
+
+    <div class="main">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="row product">
+            <div class="col-sm align-self-start">
+              <img
+                class="itemImg img-fluid animated fadeInUp adjust"
+                src="../Online_Grocery/img/$image"
+                alt=""
+                width="400"
+                height="320"
+              />
+            </div>
+            <div class="col-sm align-self-start">
+              <h3>$name</h3>
+              <p><i>packaged</i></p>
+              <p class="itemPrice">$price Per 100g</p>
+              <h6>Quantity</h6>
+              <div>
+                <div class="def-number-input number-input mb-0 w-100">
+                  <button
+                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                    class="minus"
+                  >
+                    -
+                  </button>
+                  <input
+                    class="quantity"
+                    min="1"
+                    name="quantity"
+                    value="1"
+                    type="number"
+                  />
+                  <button
+                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                    class="plus"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <br />
+              <p>Price: <span class="price">$price</span></p>
+              <button type="button" class="btn btn-danger" style="width: 30%">
+                Add to Cart
+              </button>
+              <br />
+              <div class="product_description">
+                <h3>Product description</h3>
+                <p>
+                  $desc
+                </p>
+                <p>
+                  <a
+                    class="btn btn-dark"
+                    data-toggle="collapse"
+                    href="#moreDescription"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    More description
+                  </a>
+                </p>
+                <div class="collapse" id="moreDescription">
+                  <div class="card card-body">#item No.$id</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    DELIMETER;
+
+    echo $productInfo;
+  
+
+
+}
+
+function displayFruitAndVegetableProducts(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+        foreach($xml->children() as $product){
+          if($product->aisle == "Fruits and Vegetables"){
+              $name = $product->name;
+              $ext = $product->ext;
+              $image = $name . "." . $ext;
+              $price = $product->price;
+              
+
+              $productImg = <<<DELIMETER
+
+              <div class="col-md-4 align-self-start">
+                <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+                  <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+                </a>
+                <p class="item name">$name per unit</p>
+                <p class="item price">$price</p>
+                <button type="button" class="btn btn-danger">Add to Cart</button>
+
+              </div>
+              DELIMETER;
+
+              echo $productImg;
+
+          }
+
+    }
+}
+
+function displayMeatAndPoultryProducts(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach($xml->children() as $product){
+
+      if($product->aisle == "Meat and Poultry"){
+        $name = $product->name;
+        $ext = $product->ext;
+        $image = $name . "." . $ext;
+        $price = $product->price;
+        
+
+        $productImg = <<<DELIMETER
+
+        <div class="col-md-4 align-self-start">
+          <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+            <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+          </a>
+          <p class="item name">$name per unit</p>
+          <p class="item price">$price</p>
+          <button type="button" class="btn btn-danger">Add to Cart</button>
+
+        </div>
+        DELIMETER;
+
+        echo $productImg;
+
+    }
+
+  }
+}
+
+function displayDairyAndEggsProducts(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach($xml->children() as $product){
+
+      if($product->aisle == "Dairy and Eggs"){
+          $name = $product->name;
+          $ext = $product->ext;
+          $image = $name . "." . $ext;
+          $price = $product->price;
+          
+
+          $productImg = <<<DELIMETER
+
+          <div class="col-md-4 align-self-start">
+            <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+              <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+            </a>
+            <p class="item name">$name per unit</p>
+            <p class="item price">$price</p>
+            <button type="button" class="btn btn-danger">Add to Cart</button>
+
+          </div>
+          DELIMETER;
+
+          echo $productImg;
+
+    }
+
+  }
+}
+
+function displaySeafoodProducts(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach($xml->children() as $product){
+
+      if($product->aisle == "seafood"){
+          $name = $product->name;
+          $ext = $product->ext;
+          $image = $name . "." . $ext;
+          $price = $product->price;
+          
+
+          $productImg = <<<DELIMETER
+
+          <div class="col-md-4 align-self-start">
+            <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+              <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+            </a>
+            <p class="item name">$name per unit</p>
+            <p class="item price">$price</p>
+            <button type="button" class="btn btn-danger">Add to Cart</button>
+
+          </div>
+          DELIMETER;
+
+          echo $productImg;
+
+    }
+
+  }
+}
+
+function displayBeverageProducts(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach($xml->children() as $product){
+
+      if($product->aisle == "beverages"){
+          $name = $product->name;
+          $ext = $product->ext;
+          $image = $name . "." . $ext;
+          $price = $product->price;
+          
+
+          $productImg = <<<DELIMETER
+
+          <div class="col-md-4 align-self-start">
+            <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+              <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+            </a>
+            <p class="item name">$name per unit</p>
+            <p class="item price">$price</p>
+            <button type="button" class="btn btn-danger">Add to Cart</button>
+
+          </div>
+          DELIMETER;
+
+          echo $productImg;
+
+    }
+
+  }
+}
+
+
+function displayBeerAndWineProducts(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+  foreach($xml->children() as $product){
+
+      if($product->aisle == "Beer and Wine"){
+          $name = $product->name;
+          $ext = $product->ext;
+          $image = $name . "." . $ext;
+          $price = $product->price;
+          
+
+          $productImg = <<<DELIMETER
+
+          <div class="col-md-4 align-self-start">
+            <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+              <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+            </a>
+            <p class="item name">$name per unit</p>
+            <p class="item price">$price</p>
+            <button type="button" class="btn btn-danger">Add to Cart</button>
+
+          </div>
+          DELIMETER;
+
+          echo $productImg;
+
+    }
+
+  }
+}
+
 
   
