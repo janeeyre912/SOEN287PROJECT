@@ -1,6 +1,7 @@
 var itemQuantity;
 
 window.addEventListener("load", () => {
+  deliveryDate();
   displayCart();
   itemQuantity = document.getElementsByClassName("quantity");
 
@@ -11,7 +12,7 @@ window.addEventListener("load", () => {
   }
   updateSubTotal();
 });
-deliveryDate();
+
 
 function updateSubTotal() {
   var cartItem = document.getElementsByClassName("itemPrice");
@@ -128,4 +129,69 @@ function reloadAmount(){
 saveCart();
 updateItemCount();
 displayCart();
+}
+
+
+/**
+ * Converts the current user cart to an 
+ * order object and sends it to the server.
+ */
+function postOrder() {
+
+  //Create a deep copy of the cart.
+  let order = JSON.parse(JSON.stringify(userCart));
+  //Remove the image source (server won't need it).
+  order.items.forEach(item => {
+    delete item.imgSrc;
+  });
+  //Add the estimated delivery date.
+  order['date'] = document.getElementById("dateID").innerText;
+  
+  //Convert the order js object to a query string.
+  let qStr = toQueryStr(order);
+
+  //Create a new AJAX request to postOder.php
+  let request = new XMLHttpRequest();
+  request.open('POST', 'postOrder.php?' + qStr);
+  //Specify how the response should be intepreted.
+  request.responseType = 'text';
+
+  //Specify callback function. Simply display the response using alert().
+  request.onload = () => {
+    alert(request.response);
+  };
+
+  //Send the request.
+  request.send();
+}
+
+/**
+ * Converts the js object to a query string.
+ * Found at: https://stackoverflow.com/questions/56173848/want-to-convert-a-nested-object-to-query-parameter-for-attaching-to-url
+ */
+function toQueryStr(obj) {
+
+  //Iterable function.
+  let getPairs = (obj, keys = []) =>
+  //For each element in the passed 'obj', execute the anonymous function. 
+  Object.entries(obj).reduce((pairs, [key, value]) => {
+    //If the value is also a js object, recusively call this function on that element.
+    //Add what's is returned to the 'pairs' array.
+    if (typeof value === 'object') {
+      pairs.push(...getPairs(value, [...keys, key]));
+    }
+    //Otherwise, add the key-value pair (as an array of length 2) to the 'pairs' array.
+    else {
+      pairs.push([[...keys, key], value]);
+    }
+    //Return the array of 'pairs' (key-value arrays of length 2).
+    return pairs;
+  }, []);
+
+  //Return a stringified version of the array using the following method.
+  return getPairs(obj).map(([[elemKey, ...subKeys], value]) =>
+    //Add each property of each element in the format: 'elementKey[subKey1][subKey2][...]=value'.
+    `${elemKey}${subKeys.map(key => `[${key}]`).join('')}=${value}`)
+    //Join each of the printed proterties with '&'.
+    .join('&');
 }
