@@ -15,12 +15,12 @@
             AISLES
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="../dairy_eggs/dairy_eggs.html">Dairy & Eggs</a>
-            <a class="dropdown-item" href="../Fruits&Vegetables/fruits_vegetables.html">Fruits & Vegetables</a>
-            <a class="dropdown-item" href="../seaFood/seafood.html">Fish & Seafood</a>
-            <a class="dropdown-item" href="../Meat&Poultry/MeatAndPoultry.html">Meat & Poultry</a>
-            <a class="dropdown-item" href="../Beverages/">Beverages</a>
-            <a class="dropdown-item" href="../Beer&Wine/beer_wine.html">Beer & Wine</a>
+            <a class="dropdown-item" onclick="window.location.href='basicPage.php?dairy_eggs'">Dairy & Eggs</a>
+            <a class="dropdown-item" onclick="window.location.href='basicPage.php?fruits_vegetables'">Fruits & Vegetables</a>
+            <a class="dropdown-item" onclick="window.location.href='basicPage.php?seafood'">Fish & Seafood</a>
+            <a class="dropdown-item" onclick="window.location.href='basicPage.php?meat_poultry'">Meat & Poultry</a>
+            <a class="dropdown-item" onclick="window.location.href='basicPage.php?beverages'">Beverages</a>
+            <a class="dropdown-item" onclick="window.location.href='basicPage.php?beer_wine'">Beer & Wine</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">More...</a>
           </div>
