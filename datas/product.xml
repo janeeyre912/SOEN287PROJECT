@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product_list>
+<product>
+  <itemNb>1</itemNb>
+  <name>10003</name>
+  <desc>Apples are high in fiber, vitamin C , and various antioxidants</desc>
+  <aisle>Fruits and Vegetables</aisle>
+  <price>$0.99</price>
+  <stock>148</stock>
+  <ext>png</ext>
+</product>
+<product>
+  <itemNb>2</itemNb>
+  <name>10002</name>
+  <desc>Bananas are high in fiber, vitamin C , and various antioxidants</desc>
+  <aisle>Fruits and Vegetables</aisle>
+  <price>$1.99</price>
+  <stock>250</stock>
+  <ext>png</ext>
+</product>
+<product>
+  <itemNb>3</itemNb>
+  <name>beefCubes</name>
+  <desc>Beef cubes are high in protein</desc>
+  <aisle>Meat and Poultry</aisle>
+  <price>$14.99</price>
+  <stock>190</stock>
+  <ext>png</ext>
+</product>
+<product>
+  <itemNb>4</itemNb>
+  <name>coffee</name>
+  <desc>Beef cubes are high in protein</desc>
+  <aisle>Dairy and Eggs</aisle>
+  <price>$14.99</price>
+  <stock>190</stock>
+  <ext>png</ext>
+</product>
+<product>
+  <itemNb>5</itemNb>
+  <name>10003</name>
+  <desc>Apples are high in fiber, vitamin C , and various antioxidants</desc>
+  <aisle>Fruits and Vegetables</aisle>
+  <price>$0.99</price>
+  <stock>148</stock>
+  <ext>png</ext>
+</product>
+</product_list>
