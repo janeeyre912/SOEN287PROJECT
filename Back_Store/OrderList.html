@@ -17,6 +17,38 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = () => {
+            //Create a new AJAX request to getOrders.php
+            let request = new XMLHttpRequest();
+            request.open('GET', 'getOrders.php');
+            //Specify how the response should be intepreted.
+            request.responseType = 'text';
+
+            request.onload = () => {
+                //Parse the returned JSON array.
+                let orders = JSON.parse(request.response);
+
+                if(orders.length == 0) {
+                    document.getElementById('orders').innerHTML += `There are currently no orders.`;
+                }
+                else {
+                    orders.forEach(order => {
+                    document.getElementById('orders').innerHTML +=
+                        `<tr><td>${"PLACEHOLDER NAME"}</td>
+                        <td>${order.date}</td>
+                        <td>#${"PLACEHOLDER ID"}</td>
+                        <td>
+                        <button type="button" class="edit-btn" onclick="window.location.href='EditOrderProfile.html'">Edit Order</button>
+                        <button type="button" class="cancel-btn">Delete Order</button>
+                        </td></tr>`;
+                    });
+                }
+            };
+        };
+
+    </script>
 </head>
 
 <body>
@@ -67,51 +99,53 @@
                 <th>Order ID</th>
                 <th></th>
             </thead>
-            <tr>
-                <td>Peter Serafinowicz</td>
-                <td>2021-02-12</td>
-                <td>#421481</td>
-                <td>
-                    <button type="button" class="edit-btn" onclick="window.location.href='EditOrderProfile.html'">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Linus Sebastian</td>
-                <td>2021-02-2</td>
-                <td>#421482</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Jeremy Elbertson</td>
-                <td>2021-01-30</td>
-                <td>#421483</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>John Charest</td>
-                <td>2021-1-27</td>
-                <td>#421484</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Lou Albano</td>
-                <td>2021-1-16</td>
-                <td>#421485</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
+            <tbody id="orders">
+                <tr>
+                    <td>Peter Serafinowicz</td>
+                    <td>2021-02-12</td>
+                    <td>#421481</td>
+                    <td>
+                        <button type="button" class="edit-btn" onclick="window.location.href='EditOrderProfile.html'">Edit Order</button>
+                        <button type="button" class="cancel-btn">Delete Order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Linus Sebastian</td>
+                    <td>2021-02-2</td>
+                    <td>#421482</td>
+                    <td>
+                        <button type="button" class="edit-btn">Edit Order</button>
+                        <button type="button" class="cancel-btn">Delete Order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Jeremy Elbertson</td>
+                    <td>2021-01-30</td>
+                    <td>#421483</td>
+                    <td>
+                        <button type="button" class="edit-btn">Edit Order</button>
+                        <button type="button" class="cancel-btn">Delete Order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>John Charest</td>
+                    <td>2021-1-27</td>
+                    <td>#421484</td>
+                    <td>
+                        <button type="button" class="edit-btn">Edit Order</button>
+                        <button type="button" class="cancel-btn">Delete Order</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lou Albano</td>
+                    <td>2021-1-16</td>
+                    <td>#421485</td>
+                    <td>
+                        <button type="button" class="edit-btn">Edit Order</button>
+                        <button type="button" class="cancel-btn">Delete Order</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <button type="submit" class="save-btn">Save All</button>
     </div>

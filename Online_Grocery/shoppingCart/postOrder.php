@@ -1,35 +1,60 @@
 <?php
+    //THIS SCRIPT IS ONLY MEANT TO BE ACCESSED VIA AJAX XMLHTTPREQUEST.
+
     //Don't do anything if there's no items.
     if($_POST['itemAmount'] == 0) {
-        print 'Please order at least one item.';
+        die 'Please order at least one item.';
     }
-    //If items are present, record the order as a JSON object.
-    else {
-        $output = fopen('../../datas/orders.json', "a+");
-        flock($output);
 
-        fwrite($output, '{items: [');
-        
-        $outStr = "";
+    //Try to open the JSON file
+    $output = fopen('../../datas/orders.json', "r+");
 
-        foreach($_POST['items'] as $outKey => $outVal) {
-            
-            if($outStr !== "") { $outStr .= ','; }
+    //Check if file opening was usuccessful.
+    if($output === false) {
+        die 'Could not find output file.'
+    }
 
-            $inStr = "";
-            foreach($outVal as $inKey => $inVal) {
-
-                if($inStr !== "") { $inStr .= ','; }
-                $inStr .= "\"$inKey\": \"$inVal\"";
-            }
-            $outStr .= ('{' . $inStr . '}');
+    //Prevent other accesses to the file while we'll be writing to it.
+    flock($output);
+    
+    //Move pointer until the beginning of the JSON array.
+    while(fgetc($output) !== '[') {
+        //If the end of file is reached, then there was no JSON array.
+        if(feof()) {
+            die 'Could not find JSON array.';
         }
-        fwrite($output, $outStr . '],');
-        fwrite($output, 'amount: ' . $_POST['itemAmount'] . ',');
-        fwrite($output, 'price: ' . $_POST['totalPrice'] . ',');
-        fwrite($output, "date: " . $_POST['date']);
-        fwrite('}');
-
-        print 'Order recorded successfully.';
     }
+
+    //Write the beginning of the JSON object.
+    fwrite($output, '{items: [');
+    
+    //Will track the content of the items array to be printed.
+    $outStr = "";
+    foreach($_POST['items'] as $outKey => $outVal) {
+
+        //Add a comma if not the first element.
+        if($outStr !== "") { $outStr .= ','; }
+
+        //Will track the content of the items array's element.
+        $inStr = "";
+        foreach($outVal as $inKey => $inVal) {
+            //Add a comma if not the first element.
+            if($inStr !== "") { $inStr .= ','; }
+            //Print the key-value pair in JSON format.
+            $inStr .= "\"$inKey\": \"$inVal\"";
+        }
+        //Print the item array's element as a sub-object.
+        $outStr .= ('{' . $inStr . '}');
+    }
+    //Write the contents of the items array with the closing bracket.
+    fwrite($output, $outStr . '],');
+    //Write the amount of items key-value pair.
+    fwrite($output, "\"amount\": \"" . $_POST['itemAmount'] . "\",");
+    //Write the total order price key-value pair.
+    fwrite($output, "\"price\": \"" . $_POST['totalPrice'] . "\",");
+    //Write the estimated delivery date key-value pair.
+    fwrite($output, "\"date\": \"" . $_POST['date'] . "\"}");
+
+    //Output message.
+    print 'Order recorded successfully.';
 ?>
