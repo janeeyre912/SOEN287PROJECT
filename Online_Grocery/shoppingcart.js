@@ -144,8 +144,11 @@ function postOrder() {
   order.items.forEach(item => {
     delete item.imgSrc;
   });
-  //Add the estimated delivery date.
-  order['date'] = document.getElementById("dateID").innerText;
+  //Get the current date.
+  let today = new Date();
+  today.setDate(today.getDate());
+  //Add the current date in the canadian english format (YYYY-MM-DD).
+  order['date'] = today.toLocaleDateString('en-CA');
   
   //Convert the order js object to a query string.
   let qStr = toQueryStr(order);

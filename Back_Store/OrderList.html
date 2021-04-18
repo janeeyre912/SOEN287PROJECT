@@ -26,6 +26,7 @@
             //Specify how the response should be intepreted.
             request.responseType = 'text';
 
+            //Callback function.
             request.onload = () => {
                 //Parse the returned JSON array.
                 let orders = JSON.parse(request.response);
@@ -46,6 +47,9 @@
                     });
                 }
             };
+
+            //Send the request.
+            request.send();
         };
 
     </script>
