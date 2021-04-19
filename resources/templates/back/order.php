@@ -40,27 +40,32 @@
 </script>
 
 <!-- Content -->
+
+    <div class="main col-lg-9 col-md-9 py-3 flex-grow-1 ">
+        <!--users information-->
+            <!--    breadcrumb link-->
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Order List</li>
+                </ol>
+            </nav>
 <div class="center-area">
 
-    <!-- Shows the user where they are in the website. -->
-    <nav class="aside-nav">
-        <ul class="group" style="margin: 20px;">
-            <li><a href="index_bs.html">Home</a><span> / &nbsp;</span></li>
-            <li>Order List</li>
-        </ul>
-    </nav>
-
     <!-- List of orders -->
-    <table>
-        <thead>
-            <th>Ordered By</th>
-            <th>Ordered On</th>
-            <th>Order ID</th>
-            <th></th>
-        </thead>
-        <tbody id="orders">
-
-        </tbody>
-    </table>
-    <button type="submit" class="save-btn">Save All</button>
+    <table class="table table-hover" role="table">
+      <thead role="rowgroup">
+      <tr role="row">
+          <th scope="col" role="columnheader">Ordered By</th>
+          <th scope="col" role="columnheader">Ordered On</th>
+          <th scope="col" role="columnheader">Order ID</th>
+          <th scope="col" role="columnheader"></th>
+      </tr>
+      </thead>
+      <tbody id="orders">
+    
+      </tbody>
+  </table>
+   <input type="submit" name="add_user" class="btn btn-dark pull-right" value="Save All" >
+</div>
 </div>
