@@ -22,7 +22,7 @@
                 console.log(orders);
                 orders.forEach(order => {
                 document.getElementById('orders').innerHTML +=
-                    `<tr><td>${"PLACEHOLDER NAME"}</td>
+                    `<tr><td>${order.user}</td>
                     <td>${order.date}</td>
                     <td>#${order.id}</td>
                     <td>
