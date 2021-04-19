@@ -3,7 +3,7 @@
 
     //Don't do anything if there's no items.
     if($_POST['itemAmount'] == 0) {
-        die 'Please order at least one item.';
+        die('Please order at least one item.');
     }
 
     //Try to open the JSON file
@@ -11,17 +11,17 @@
 
     //Check if file opening was usuccessful.
     if($output === false) {
-        die 'Could not find output file.'
+        die('Could not find output file.');
     }
 
     //Prevent other accesses to the file while we'll be writing to it.
-    flock($output);
+    flock($output, LOCK_EX);
     
     //Move pointer until the beginning of the JSON array.
     while(fgetc($output) !== '[') {
         //If the end of file is reached, then there was no JSON array.
-        if(feof()) {
-            die 'Could not find JSON array.';
+        if(feof($output)) {
+            die('Could not find JSON array.');
         }
     }
 

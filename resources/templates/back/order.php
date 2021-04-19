@@ -24,7 +24,7 @@
                 document.getElementById('orders').innerHTML +=
                     `<tr><td>${"PLACEHOLDER NAME"}</td>
                     <td>${order.date}</td>
-                    <td>#${"PLACEHOLDER ID"}</td>
+                    <td>#${order.id}</td>
                     <td>
                     <button type="button" class="edit-btn" onclick="window.location.href='EditOrderProfile.html'">Edit Order</button>
                     <button type="button" class="cancel-btn">Delete Order</button>
@@ -59,51 +59,7 @@
             <th></th>
         </thead>
         <tbody id="orders">
-            <tr>
-                <td>Peter Serafinowicz</td>
-                <td>2021-02-12</td>
-                <td>#421481</td>
-                <td>
-                    <button type="button" class="edit-btn" onclick="window.location.href='EditOrderProfile.html'">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Linus Sebastian</td>
-                <td>2021-02-2</td>
-                <td>#421482</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Jeremy Elbertson</td>
-                <td>2021-01-30</td>
-                <td>#421483</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>John Charest</td>
-                <td>2021-1-27</td>
-                <td>#421484</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Lou Albano</td>
-                <td>2021-1-16</td>
-                <td>#421485</td>
-                <td>
-                    <button type="button" class="edit-btn">Edit Order</button>
-                    <button type="button" class="cancel-btn">Delete Order</button>
-                </td>
-            </tr>
+
         </tbody>
     </table>
     <button type="submit" class="save-btn">Save All</button>
