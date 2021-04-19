@@ -16,14 +16,22 @@ if(!isset($_SESSION['user_name'])){
 
               }
 
-
-              if(isset($_GET['orders'])){
+            if(isset($_GET['orders'])){
 
 
                   include(TEMPLATE_BACK . "/order.php");
 
 
-              }
+            }
+              
+
+            if(isset($_GET['addOrder'])){
+
+
+                include("addOrder.php");
+
+
+            }
               if(isset($_GET['edit_order'])){
 
 
