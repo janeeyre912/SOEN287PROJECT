@@ -144,28 +144,46 @@ function postOrder() {
   order.items.forEach(item => {
     delete item.imgSrc;
   });
+
   //Get the current date.
   let today = new Date();
   today.setDate(today.getDate());
   //Add the current date in the canadian english format (YYYY-MM-DD).
   order['date'] = today.toLocaleDateString('en-CA');
   
-  //Convert the order js object to a query string.
-  let qStr = toQueryStr(order);
-
-  //Create a new AJAX request to postOder.php
-  let request = new XMLHttpRequest();
-  request.open('POST', 'postOrder.php?' + qStr);
+  //Get the order ID from the server.
+  let idRequest = new XMLHttpRequest();
+  idRequest.open('GET', '../Back_Store/getNextOrderID.php');
   //Specify how the response should be intepreted.
-  request.responseType = 'text';
+  idRequest.responseType = 'text';
 
-  //Specify callback function. Simply display the response using alert().
-  request.onload = () => {
-    alert(request.response);
-  };
+  //Specify callback function. Set the ID and send a post request..
+  idRequest.onload = () => {
+
+    //Set the ID as the returned number.
+    order['id'] = idRequest.response;
+
+    //Convert the order javascript object to a query string.
+    let qStr = toQueryStr(order);
+
+    //Create a new AJAX request to postOder.php
+    let postRequest = new XMLHttpRequest();
+    postRequest.open('POST', 'shoppingCart/postOrder.php?' + qStr);
+    //Specify how the response should be intepreted.
+    postRequest.responseType = 'text';
+
+    //Specify callback function. Simply display the response using alert().
+    postRequest.onload = () => {
+      //This is the last statement that will execute if there is no errors.
+      alert(postRequest.response);
+    };
+
+    //Send the request.
+    postRequest.send();
+  }
 
   //Send the request.
-  request.send();
+  idRequest.send();
 }
 
 /**
