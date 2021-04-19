@@ -51,7 +51,7 @@
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">users</li>
+                    <li class="breadcrumb-item active" aria-current="page">Orders</li>
                 </ol>
             </nav>
             <button type="button" class="btn btn-dark btn-adduser"onclick="window.location.href='index.php?addOrder'">Add Order</button>
