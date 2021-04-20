@@ -466,5 +466,68 @@ function displayBeerAndWineProducts(){
   }
 }
 
+function edit_product(){
+
+  if(isset($_POST['update_product'])){
+
+    $productName = $_POST['pro-name'];
+    $productDescription = $_POST['pro-desc'];
+    $productAisle = $_POST['aisle'];
+    $productPrice = $_POST['pro-price'];
+    $productStock = $_POST['pro-qty'];
+    
+    $file = $_FILES['pro-img'];
+    $fileTmpPath = $_FILES['pro-img']['tmp_name'];
+    $fileName = $_FILES['pro-img']['name'];
+    $fileSize = $_FILES['pro-img']['size'];
+    $fileType = $_FILES['pro-img']['type'];
+    $fileError = $_FILES['pro-img']['error'];
+    $fileNameCmps = explode(".", $fileName);
+    $fileExtension = strtolower(end($fileNameCmps));
+
+    $newFileName = $productName . "." . $fileExtension;
+    $allowedfileExtensions = array('jpg', 'jpeg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc');
+    if (in_array($fileExtension, $allowedfileExtensions)) {
+      if($fileError === 0){
+        if($fileSize < 1000000){
+          
+        } else {
+          set_message("File uploaded is too large!");
+        }
+      } else {
+        set_message("There was an error uploading your file!");
+      }
+        
+    } else {
+      set_message("Image format not supported.");
+    }
+    $target_dir = "../Online_Grocery/img/" . $newFileName;
+    if(move_uploaded_file($fileTmpPath, $target_dir))
+    {
+        set_message("File successfully uploaded!");
+    }
+    else
+    {
+        set_message('There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.');
+        
+    }
+    
+    $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+    foreach($xml->children() as $product){
+      if($product->itemNb == $_GET['itemNb']){
+        
+        $product->name = $productName;
+        $product->desc = $productDescription;
+        $product->aisle = $productAisle;
+        $product->price = $productPrice;
+        $product->stock = $productStock;
+        $product->ext = $fileExtension;
+      }
+    }
+    file_put_contents('../datas/product.xml',$xml->asXML());
+    echo $product->ext;
+  }
+}
+
 
   
