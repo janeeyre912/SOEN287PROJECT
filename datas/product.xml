@@ -2,11 +2,11 @@
 <product_list>
 <product>
   <itemNb>1</itemNb>
-  <name>10003</name>
-  <desc>Apples are high in fiber, vitamin C , and various antioxidants</desc>
+  <name>Apples</name>
+  <desc>Apples are high in vitamins and minerals.</desc>
   <aisle>Fruits and Vegetables</aisle>
-  <price>$0.99</price>
-  <stock>148</stock>
+  <price>0.99</price>
+  <stock>210</stock>
   <ext>png</ext>
 </product>
 <product>
