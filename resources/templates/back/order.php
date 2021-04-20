@@ -1,9 +1,3 @@
-
-
-<?php
- 
-?>
-
 <script>
     window.onload = () => {
         //Create a new AJAX request to getOrders.php
@@ -21,16 +15,15 @@
                 orderlist.innerHTML += `There are currently no orders.`;
             }
             else {
-                console.log(orders);
-                orders.forEach(orders => {
+                orders.forEach(order => {
                 orderlist.innerHTML +=
                     `<tr role="row">
-                    <td row="cell">${orders.orderid}</td>
-                    <td row="cell">${orders.orderdate}</td>
-                    <td row="cell">${orders.orderby}</td>
-                    <td row="cell">${orders.email}</td>
-                    <td>
-                    <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_user&id={$user->id}'">Edit</button>
+                    <td row="cell" class="order">${order.orderid}</td>
+                    <td row="cell" class="order">${order.orderdate}</td>
+                    <td row="cell" class="order">${order.orderby}</td>
+                    <td row="cell" class="order">${order.email}</td>
+                    <td class="order">
+                    <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_order&id=${order.orderid}'">Edit</button>
                     <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_user_id={$user->id}'">Delete</button>
                     </td> 
                     </tr> `;
@@ -66,10 +59,7 @@
                     <th scope="col" role="columnheader"></th>
                 </tr>
                 </thead>
-                <tbody role="rowgroup">
-                <div class="orderlist">
-
-                </div>
+                <tbody role="rowgroup" class="orderlist">
                 </tbody>
             </table>
 </div>
