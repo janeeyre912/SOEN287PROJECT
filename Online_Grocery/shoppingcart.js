@@ -164,14 +164,10 @@ function postOrder() {
 
     //Set the ID as the returned number.
     order['id'] = idRequest.response;
-    console.log(idRequest.response);
-
-    //Convert the order javascript object to a query string.
-    let qStr = toQueryStr(order);
 
     //Create a new AJAX request to postOrder.php
     let orderRequest = new XMLHttpRequest();
-    orderRequest.open('GET', 'postOrder.php?' + qStr, true);
+    orderRequest.open('GET', 'postOrder.php?' + toQueryStr(order), true);
     //Specify how the response should be intepreted.
     orderRequest.responseType = 'text';
 

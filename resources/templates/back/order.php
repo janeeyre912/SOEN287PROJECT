@@ -45,7 +45,7 @@
     function deleteOrder(id) {
         //Create a new AJAX request to getOrders.php
         let request = new XMLHttpRequest();
-        request.open('GET', 'deleteOrder.php?');
+        request.open('GET', 'deleteOrder.php?id=' + id);
         //Specify how the response should be intepreted.
         request.responseType = 'text';
         

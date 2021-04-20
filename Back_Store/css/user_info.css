@@ -206,4 +206,10 @@ and (max-device-width: 1024px)  {
     td.order:nth-of-type(3):before { content: "Date: "; }
     td.order:nth-of-type(4):before { content: "User: "; }
     td.order:nth-of-type(5):before { content: ""; }
+
+    /*Label the data for editOrder.php*/
+    td.item:nth-of-type(1):before { content: "Name: "; }
+    td.item:nth-of-type(2):before { content: "Price: "; }
+    td.item:nth-of-type(3):before { content: "Amount: "; }
+    td.item:nth-of-type(5):before { content: ""; }
 }
