@@ -202,8 +202,8 @@ and (max-device-width: 1024px)  {
 
     /*Label the data for order.php*/
     td.order:nth-of-type(1):before { content: "ID: "; }
-    td.order:nth-of-type(2):before { content: "Date: "; }
-    td.order:nth-of-type(3):before { content: "Expected: "; }
-    td.order:nth-of-type(4):before { content: "Email: "; }
+    td.order:nth-of-type(2):before { content: "Amount: "; }
+    td.order:nth-of-type(3):before { content: "Date: "; }
+    td.order:nth-of-type(4):before { content: "User: "; }
     td.order:nth-of-type(5):before { content: ""; }
 }

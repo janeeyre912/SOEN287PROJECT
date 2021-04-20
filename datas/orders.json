@@ -1,14 +1,1 @@
-[
-    {
-        "items":
-        [
-            {"name":"coffee","price":"2","amount":"3"},
-            {"name":"banana","price":"2","amount":"3"}
-        ],
-        "itemAmount":"6",
-        "totalPrice":"0",
-        "user":"PLACEHOLDER",
-        "date":"2021-04-19",
-        "id":"8"
-    }
-]
+[{"items":[{"name":"coffee","price":"2","amount":"3"},{"name":"banana","price":"2","amount":"3"}],"itemAmount":"6","totalPrice":"0","user":"PLACEHOLDER","date":"2021-04-19","id":"7"},{"items":[{"name":"coffee","price":"2","amount":"3"},{"name":"banana","price":"2","amount":"3"}],"itemAmount":"6","totalPrice":"0","user":"PLACEHOLDER","date":"2021-04-19","id":"8"},{"items":[{"name":"coffee","price":"2","amount":"3"},{"name":"banana","price":"2","amount":"3"}],"itemAmount":"6","totalPrice":"0","user":"PLACEHOLDER","date":"2021-04-19","id":"9"}]

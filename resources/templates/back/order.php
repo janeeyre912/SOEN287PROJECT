@@ -1,5 +1,9 @@
 <script>
-    window.onload = () => {
+    //Update the list of orders as soon as the page is done loading.
+    window.onload = updateList;
+
+    /** Fetches the list of orders in within the database. */
+    function updateList() {
         //Create a new AJAX request to getOrders.php
         let request = new XMLHttpRequest();
         request.open('GET', 'getOrders.php');
@@ -10,21 +14,23 @@
         request.onload = () => {
             //Parse the returned JSON array.
             let orders = JSON.parse(request.response);
-            var orderlist = document.querySelector(".orderlist");
+            let list = document.getElementById("orderlist");
+            list.innerHTML = "";
+
             if(orders.length == 0) {
-                orderlist.innerHTML += `There are currently no orders.`;
+                list.innerHTML += `There are currently no orders.`;
             }
             else {
                 orders.forEach(order => {
-                orderlist.innerHTML +=
+                list.innerHTML +=
                     `<tr role="row">
-                    <td row="cell" class="order">${order.orderid}</td>
-                    <td row="cell" class="order">${order.orderdate}</td>
-                    <td row="cell" class="order">${order.orderby}</td>
-                    <td row="cell" class="order">${order.email}</td>
+                    <td row="cell" class="order">${order.id}</td>
+                    <td row="cell" class="order">${order.itemAmount}</td>
+                    <td row="cell" class="order">${order.date}</td>
+                    <td row="cell" class="order">${order.user}</td>
                     <td class="order">
-                    <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_order&id=${order.orderid}'">Edit</button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_user_id={$user->id}'">Delete</button>
+                    <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_order&id=${order.id}'">Edit</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick ="deleteOrder(${order.id});">Delete</button>
                     </td> 
                     </tr> `;
                 });
@@ -33,8 +39,27 @@
 
         //Send the request.
         request.send();
-    };
+    }
 
+    /** Deletes the order from the database. */
+    function deleteOrder(id) {
+        //Create a new AJAX request to getOrders.php
+        let request = new XMLHttpRequest();
+        request.open('GET', 'deleteOrder.php?');
+        //Specify how the response should be intepreted.
+        request.responseType = 'text';
+        
+        request.onload = () => {
+            //If the deletion was successful, reload the list of orders.
+            if(request.response == '200: Success') {
+                updateList();
+            }
+            else {
+                alert(request.response);
+            }
+        };
+        request.send();
+    }
 </script>
 
 
@@ -48,18 +73,18 @@
                 </ol>
             </nav>
             <button type="button" class="btn btn-dark btn-adduser"onclick="window.location.href='index.php?addOrder'">Add Order</button>
+            <button type="button" class="btn btn-dark btn-adduser"onclick="updateList();">Refresh</button>
             <h6 class="bg-success"><?php display_message(); ?></h6>
             <table class="table table-hover" role="table">
                 <thead role="rowgroup">
                 <tr role="row">
-                    <th scope="col" role="columnheader">Order ID</th>
-                    <th scope="col" role="columnheader">Order date</th>
-                    <th scope="col" role="columnheader">Order by</th>
-                    <th scope="col" role="columnheader">Email</th>
+                    <th scope="col" role="columnheader">Item Name</th>
+                    <th scope="col" role="columnheader">Price</th>
+                    <th scope="col" role="columnheader">Amount</th>
                     <th scope="col" role="columnheader"></th>
                 </tr>
                 </thead>
-                <tbody role="rowgroup" class="orderlist">
+                <tbody role="rowgroup" id="itemlist">
                 </tbody>
             </table>
 </div>
