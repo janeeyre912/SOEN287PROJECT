@@ -519,7 +519,7 @@ function edit_product(){
         $product->name = $productName;
         $product->desc = $productDescription;
         $product->aisle = $productAisle;
-        $product->price = $productPrice;
+        $product->price = "$" . $productPrice;
         $product->stock = $productStock;
         $product->ext = $fileExtension;
       }
