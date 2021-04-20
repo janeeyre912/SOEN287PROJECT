@@ -145,6 +145,8 @@ function postOrder() {
     delete item.imgSrc;
   });
 
+  order['user'] = 'PLACEHOLDER';
+
   //Get the current date.
   let today = new Date();
   today.setDate(today.getDate());
@@ -153,7 +155,7 @@ function postOrder() {
   
   //Get the order ID from the server.
   let idRequest = new XMLHttpRequest();
-  idRequest.open('GET', '../Back_Store/getNextOrderID.php');
+  idRequest.open('GET', '../Back_Store/getNextOrderID.php', true);
   //Specify how the response should be intepreted.
   idRequest.responseType = 'text';
 
@@ -162,24 +164,25 @@ function postOrder() {
 
     //Set the ID as the returned number.
     order['id'] = idRequest.response;
+    console.log(idRequest.response);
 
     //Convert the order javascript object to a query string.
     let qStr = toQueryStr(order);
 
-    //Create a new AJAX request to postOder.php
-    let postRequest = new XMLHttpRequest();
-    postRequest.open('POST', 'shoppingCart/postOrder.php?' + qStr);
+    //Create a new AJAX request to postOrder.php
+    let orderRequest = new XMLHttpRequest();
+    orderRequest.open('GET', 'postOrder.php?' + qStr, true);
     //Specify how the response should be intepreted.
-    postRequest.responseType = 'text';
+    orderRequest.responseType = 'text';
 
     //Specify callback function. Simply display the response using alert().
-    postRequest.onload = () => {
+    orderRequest.onload = () => {
       //This is the last statement that will execute if there is no errors.
-      alert(postRequest.response);
+      alert(orderRequest.response);
     };
 
     //Send the request.
-    postRequest.send();
+    orderRequest.send();
   }
 
   //Send the request.
