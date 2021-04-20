@@ -78,13 +78,14 @@
             <table class="table table-hover" role="table">
                 <thead role="rowgroup">
                 <tr role="row">
-                    <th scope="col" role="columnheader">Item Name</th>
-                    <th scope="col" role="columnheader">Price</th>
-                    <th scope="col" role="columnheader">Amount</th>
+                    <th scope="col" role="columnheader">Order ID</th>
+                    <th scope="col" role="columnheader">Item Amount</th>
+                    <th scope="col" role="columnheader">Ordered On</th>
+                    <th scope="col" role="columnheader">From User</th>
                     <th scope="col" role="columnheader"></th>
                 </tr>
                 </thead>
-                <tbody role="rowgroup" id="itemlist">
+                <tbody role="rowgroup" id="orderlist">
                 </tbody>
             </table>
 </div>
