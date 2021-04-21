@@ -526,7 +526,7 @@ function edit_product(){
       }
     }
     file_put_contents('../datas/product.xml',$xml->asXML());
-    echo $product->ext;
+    
   }
 }
 
