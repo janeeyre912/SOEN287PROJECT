@@ -23,6 +23,11 @@
                 $orderfile = file_get_contents($datafile);
                 $arrayOrder = json_decode($orderfile, true); 
                 $orderElements = array(
+                    'items' => array(
+                        'name'=>"",
+                        'price'=>"",
+                        'amount'=>""
+                    ),
                     'id' => $_POST["id"],
                     'itemAmount' => "",
                     'totalPrice' => "",
