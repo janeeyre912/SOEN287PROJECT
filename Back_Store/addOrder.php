@@ -4,33 +4,30 @@
  $datafile = '../datas/orders.json';
  if(isset($_POST["add_order"]))  
  {  
-      if(empty($_POST["orderid"]))  
+      if(empty($_POST["id"]))  
       {  
            $error = "<label class='text-danger'>Enter OrderID</label>";  
       }  
-      else if(empty($_POST["orderdate"]))  
+      else if(empty($_POST["date"]))  
       {  
            $error = "<label class='text-danger'>Enter Order Date</label>";  
       }  
-      else if(empty($_POST["orderby"]))  
+      else if(empty($_POST["user"]))  
       {  
            $error = "<label class='text-danger'>Enter Order Name</label>";  
-      }
-      else if(empty($_POST["email"]))  
-      {  
-           $error = "<label class='text-danger'>Enter Email</label>";  
       }
       else  
       {  
            if(file_exists($datafile))  
            {  
-                $orderfile = file_get_contents($datafile);  
-                $arrayOrder = json_decode($orderfile, true);  
-                $orderElements = array(  
-                     'orderid' => $_POST['orderid'],  
-                     'orderdate' => $_POST["orderdate"],  
-                     'orderby' => $_POST["orderby"],
-                     'email' => $_POST["email"]  
+                $orderfile = file_get_contents($datafile);
+                $arrayOrder = json_decode($orderfile, true); 
+                $orderElements = array(
+                    'id' => $_POST["id"],
+                    'itemAmount' => "",
+                    'totalPrice' => "",
+                    'user' => $_POST['user'],
+                    'date' => $_POST["date"]  
                 );  
                 $arrayOrder[] = $orderElements;  
                 $final_data = json_encode($arrayOrder);  
@@ -67,27 +64,23 @@
                 <?php   
                      if(isset($error))  
                      {  
-                          echo $error;  
+                          echo $error;
                      }  
                 ?>  
                 <div class="form-row">
                     <div class="col-lg-4 mb-3">
                         <label for="orderId">Order ID</label>
-                        <input type="text" name="orderid" placeholder="orderid"  required>
+                        <input type="text" name="id" placeholder="id"  required>
                     </div>
                     <div class="col-lg-4 mb-3">
                         <label for="orderdate">Order Date</label>
-                        <input type="text"  name="orderdate" placeholder="orderdate"  required>
+                        <input type="text"  name="date" placeholder="date"  required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-lg-4 mb-3">
                         <label for="orderby">Order by</label>
-                        <input type="text" name="orderby" placeholder="orderby" required>
-                    </div>
-                    <div class="col-lg-4 mb-3">
-                        <label for="email">Email</label>
-                        <input type="text"  name="email" placeholder="Email" required>
+                        <input type="text" name="user" placeholder="user" required>
                     </div>
                 </div>
 
