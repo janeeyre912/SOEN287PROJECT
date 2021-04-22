@@ -154,6 +154,7 @@ function add_base(){
     $addxml= $xml->addChild('user');
     $addxml->addChild('id',$id);
     $addxml->addChild('type',$type);
+    $addxml->addChild('username',$username);
     $addxml->addChild('lastname',$lastname);
     $addxml->addChild('firstname',$firstname);
     $addxml->addChild('password',$password);
