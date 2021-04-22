@@ -11,6 +11,8 @@ if(isset($_GET['id'])){
       $email = $user->email;
       $password = $user->password;
       $telephone = $user->telephone;
+      $type = $user->type;
+      $id = $user->id;
       break;
     }
   }
@@ -78,6 +80,16 @@ if(isset($_GET['id'])){
             <div class="col-lg-4 mb-3">
                 <label for="telephone">Telephone</label>
                 <input type="text"  name="telephone" placeholder="Telephone" value="<?php echo $telephone; ?>"  required>
+            </div>
+        </div>
+       <div class="form-row">
+            <div class="col-lg-4 mb-3">
+                <label for="email">ID</label>
+                <input type="text"  name="email" placeholder="id" value="<?php echo $id; ?>"  readonly>
+            </div>
+            <div class="col-lg-4 mb-3">
+                <label for="password">Type</label>
+                <input type="text"  name="password" placeholder="Password" value="<?php echo $type; ?>" readonly>
             </div>
         </div>
 
