@@ -1,14 +1,12 @@
 <?php
- $message = '';  
- $error = '';
- $datafile = '../datas/orders.json';
+$message = '';  
+$error = '';
+$datafile = '../datas/orders.json';
+
  if(isset($_POST["add_order"]))  
  {  
-      if(empty($_POST["id"]))  
-      {  
-           $error = "<label class='text-danger'>Enter OrderID</label>";  
-      }  
-      else if(empty($_POST["date"]))  
+
+      if(empty($_POST["date"]))  
       {  
            $error = "<label class='text-danger'>Enter Order Date</label>";  
       }  
@@ -21,21 +19,23 @@
            if(file_exists($datafile))  
            {  
                 $orderfile = file_get_contents($datafile);
-                $arrayOrder = json_decode($orderfile, true); 
+                $arrayOrder = json_decode($orderfile, true);
+                $last_item = end($arrayOrder);
+                $last_item_id = $last_item['id'];
                 $orderElements = array(
                     'items' => array(
                         'name'=>"",
                         'price'=>"",
                         'amount'=>""
                     ),
-                    'id' => $_POST["id"],
+                    'id' => ++$last_item_id,
                     'itemAmount' => "",
                     'totalPrice' => "",
                     'user' => $_POST['user'],
                     'date' => $_POST["date"]  
                 );  
                 $arrayOrder[] = $orderElements;  
-                $final_data = json_encode($arrayOrder);  
+                $final_data = json_encode($arrayOrder);
                 if(file_put_contents($datafile, $final_data))  
                 {  
                      $message = "<label class='text-success'>File added Successfully</p>";  
@@ -73,10 +73,7 @@
                      }  
                 ?>  
                 <div class="form-row">
-                    <div class="col-lg-4 mb-3">
-                        <label for="orderId">Order ID</label>
-                        <input type="text" name="id" placeholder="id"  required>
-                    </div>
+
                     <div class="col-lg-4 mb-3">
                         <label for="orderdate">Order Date</label>
                         <input type="text"  name="date" placeholder="date"  required>
