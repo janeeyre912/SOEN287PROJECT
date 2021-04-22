@@ -140,6 +140,32 @@ function add_user(){
 
 }
 
+function add_base(){
+  if (isset($_POST['add_base'])){
+    $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
+    $id = $xml->user->count() + 1;
+    $type = "base";
+    $username = $_POST['lastname'];
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
+    $password = $_POST['password'];
+    $telephone = $_POST['telephone'];
+    $email = $_POST['email'];
+    $addxml= $xml->addChild('user');
+    $addxml->addChild('id',$id);
+    $addxml->addChild('type',$type);
+    $addxml->addChild('lastname',$lastname);
+    $addxml->addChild('firstname',$firstname);
+    $addxml->addChild('password',$password);
+    $addxml->addChild('telephone',$telephone);
+    $addxml->addChild('email',$email);
+    file_put_contents('../datas/user.xml',$xml->asXML());
+    set_message("BASE CREATED");
+    redirect("../Online_Grocery/login.php");exit();
+  }
+}
+
+
 function displayProductList(){
 
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
