@@ -222,7 +222,6 @@ function addItemToCart(product, amount = 1) {
 function displayCart() {
   var cartItems = localStorage.getItem("User:Cart");
   cartItems = JSON.parse(cartItems);
-  console.log(cartItems.items[0].name);
   var itemsProducts = document.querySelector(".itemsProducts");
   itemsProducts.innerHTML = "";
   for (var i = 0; i < cartItems.items.length; i++) {
