@@ -18,7 +18,7 @@ if (isset($_GET['itemNb'])) {
 }
 ?>
 
-<?php edit_product(); ?>
+
 
 
 
@@ -34,6 +34,7 @@ if (isset($_GET['itemNb'])) {
     </nav>
 
     <div class="center-area">
+        <?php edit_product(); ?>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="product-image group col-md-5">
                 <input type="file" class="productInput" name="pro-img" value="">
