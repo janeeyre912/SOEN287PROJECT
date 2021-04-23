@@ -198,7 +198,7 @@ function displayProductList(){
         <td row="cell">{$productStock}</td>
         <td>
             <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_product&itemNb={$product->itemNb}'">Edit</button>
-            <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_user_id={$user->id}'">Delete</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_product_id={$product->itemNb}'">Delete</button>
         </td> 
     </tr> 
     

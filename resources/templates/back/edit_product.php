@@ -11,6 +11,7 @@ if(isset($_GET['itemNb'])){
         $productPrice = $product->price;
         $productStock = $product->stock;
         $productExt = $product->ext;
+        $image = $productName . "." . $productExt;
         break;
       }
     }
@@ -36,7 +37,7 @@ if(isset($_GET['itemNb'])){
           <form action="" method="post" enctype="multipart/form-data" >
                 <div class="product-image group col-md-5">
                     <input type="file" class="productInput" name="pro-img" value="" required>
-                    <img src="" id = "prImg" width=400px height=400px class="float-left">
+                    <img src="../Online_Grocery/img/<?php echo $image; ?>" id = "prImg" width=400px height=400px class="float-left">
                 </div>
                 <div class="product row justify-content-md-center">
                     <div class="main-desc col-md-7 mb-3">
@@ -46,12 +47,12 @@ if(isset($_GET['itemNb'])){
                     <div class= "secondary-desc col-md-7 mb-3">
                         <label for="product-desc" name="product-name">Edit Product description </label>
                         <textarea id="product-desc" name="pro-desc" placeholder="Description"
-                        cols="15" rows="2" class="align-middle purple-border-focus" value="<?php echo $productDescription; ?>" required></textarea>
+                        cols="15" rows="2" class="align-middle purple-border-focus" value="" required><?php echo $productDescription; ?></textarea>
                     </div>
                 </div>
                 <div class="aisle row justify-content-md-center col-md-7 mb-3">
                     <label for="aisle-choice">Aisle</label>
-                    <select name="aisle" value="<?php echo $productAisle; ?>" id="aisle-choice">
+                    <select name="aisle" class = "mySelect" value="<?php echo $productAisle; ?>" id="aisle-choice">
                         <option value="Fruits and Vegetables">Fruits &amp; Vegetables</option>
                         <option value="Dairy and Eggs">Dairy &amp; Eggs</option>
                         <option value="seafood">Fish &amp; Seafood</option>
@@ -95,6 +96,10 @@ if(isset($_GET['itemNb'])){
 
 
         })
+        
+        $( function () {
+        $('.mySelect option[value="<?php echo $productAisle; ?>"]').prop('selected', true);
+        });
         </script>
         </div>
 </div>

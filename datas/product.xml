@@ -14,7 +14,7 @@
   <name>Banana</name>
   <desc>Bananas are high in fiber, vitamin C , and various antioxidants</desc>
   <aisle>Fruits and Vegetables</aisle>
-  <price>$1.99</price>
+  <price>1.99</price>
   <stock>250</stock>
   <ext>png</ext>
 </product>
@@ -23,7 +23,7 @@
   <name>beefCubes</name>
   <desc>Beef cubes are high in protein</desc>
   <aisle>Meat and Poultry</aisle>
-  <price>$14.99</price>
+  <price>14.99</price>
   <stock>190</stock>
   <ext>png</ext>
 </product>
@@ -32,7 +32,7 @@
   <name>coffee</name>
   <desc>Beef cubes are high in protein</desc>
   <aisle>Dairy and Eggs</aisle>
-  <price>$14.99</price>
+  <price>14.99</price>
   <stock>190</stock>
   <ext>png</ext>
 </product>
@@ -41,7 +41,7 @@
   <name>Lime</name>
   <desc>A lime is tart,fragrant and has a juicy flesh.</desc>
   <aisle>Fruits and Vegetables</aisle>
-  <price>$0.66</price>
+  <price>0.66</price>
   <stock>148</stock>
   <ext>png</ext>
 </product>
