@@ -59,7 +59,7 @@ $datafile = '../datas/orders.json';
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                    <li class="breadcrumb-item"><a href="index.php?orderBack">Order</a></li>
+                    <li class="breadcrumb-item"><a href="index.php?orders">Order</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Order information</li>
                 </ol>
             </nav>
