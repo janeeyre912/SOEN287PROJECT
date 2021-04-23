@@ -88,11 +88,11 @@ function displayCart() {
           </div>
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i class="fas fa-trash-alt mr-1" onclick="removeItemFromCart('${cartItems.items[i].name}',${cartItems.items[i].amount})">
+              <a href="#" type="button" class="card-link-secondary small text-uppercase mr-3" onclick="removeItemFromCart('${cartItems.items[i].name}',${cartItems.items[i].amount})"><i class="fas fa-trash-alt mr-1">
               </i> Remove item
               </a>
             </div>
-            <strong>Price per item: $<strong class="itemSubTotalPrice">${cartItems.items[i].price}</strong></strong>
+            <strong>$<span class="itemSubTotalPrice">${cartItems.items[i].price}</span></strong>
           </div>
         </div>
       </div>
@@ -100,16 +100,16 @@ function displayCart() {
   }
 }
 
-function removeItemFromCart(name,amount) {
 
-    for (var i = 0; i < userCart.items.length; i++)  {
+function removeItemFromCart(name, amount) {
+  for (var i = 0; i < userCart.items.length; i++) {
     if (userCart.items[i].name === name) {
-        userCart.totalPrice -= userCart.items[i].price * amount;
-        userCart.items[i].amount = 0;
+      userCart.totalPrice -= userCart.items[i].price * amount;
+      userCart.items[i].amount = 0;
 
-        if (userCart.items[i].amount  === 0) {
-            userCart.items.splice(i, 1); // removes item from the array
-        }
+      if (userCart.items[i].amount === 0) {
+        userCart.items.splice(i, 1); // removes item from the array
+      }
       userCart.itemAmount -= amount;
 
       saveCart();
@@ -120,15 +120,16 @@ function removeItemFromCart(name,amount) {
     }
   }
 }
-function reloadAmount(){
-    userCart.itemAmount = 0;
-  for (var i = 0; i < userCart.items.length; i++)  {
-      userCart.items[i].amount = itemQuantity[i].value;
-      userCart.itemAmount += parseInt(userCart.items[i].amount);
-}
-saveCart();
-updateItemCount();
-displayCart();
+
+function reloadAmount() {
+  userCart.itemAmount = 0;
+  for (var i = 0; i < userCart.items.length; i++) {
+    userCart.items[i].amount = itemQuantity[i].value;
+    userCart.itemAmount += parseInt(userCart.items[i].amount);
+  }
+  saveCart();
+  updateItemCount();
+  displayCart();
 }
 
 
@@ -152,7 +153,7 @@ function postOrder() {
   today.setDate(today.getDate());
   //Add the current date in the canadian english format (YYYY-MM-DD).
   order['date'] = today.toLocaleDateString('en-CA');
-  
+
   //Get the order ID from the server.
   let idRequest = new XMLHttpRequest();
   idRequest.open('GET', '../../Back_Store/getNextOrderID.php', true);
@@ -193,20 +194,20 @@ function toQueryStr(obj) {
 
   //Iterable function.
   let getPairs = (obj, keys = []) =>
-  //For each element in the passed 'obj', execute the anonymous function. 
-  Object.entries(obj).reduce((pairs, [key, value]) => {
-    //If the value is also a js object, recusively call this function on that element.
-    //Add what's is returned to the 'pairs' array.
-    if (typeof value === 'object') {
-      pairs.push(...getPairs(value, [...keys, key]));
-    }
-    //Otherwise, add the key-value pair (as an array of length 2) to the 'pairs' array.
-    else {
-      pairs.push([[...keys, key], value]);
-    }
-    //Return the array of 'pairs' (key-value arrays of length 2).
-    return pairs;
-  }, []);
+    //For each element in the passed 'obj', execute the anonymous function. 
+    Object.entries(obj).reduce((pairs, [key, value]) => {
+      //If the value is also a js object, recusively call this function on that element.
+      //Add what's is returned to the 'pairs' array.
+      if (typeof value === 'object') {
+        pairs.push(...getPairs(value, [...keys, key]));
+      }
+      //Otherwise, add the key-value pair (as an array of length 2) to the 'pairs' array.
+      else {
+        pairs.push([[...keys, key], value]);
+      }
+      //Return the array of 'pairs' (key-value arrays of length 2).
+      return pairs;
+    }, []);
 
   //Return a stringified version of the array using the following method.
   return getPairs(obj).map(([[elemKey, ...subKeys], value]) =>
