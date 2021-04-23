@@ -18,7 +18,7 @@ if (isset($_GET['itemNb'])) {
 }
 ?>
 
-
+<?php edit_product(); ?>
 
 
 
@@ -34,7 +34,6 @@ if (isset($_GET['itemNb'])) {
     </nav>
 
     <div class="center-area">
-        <?php edit_product(); ?>
         <form action="" method="post" enctype="multipart/form-data">
             <div class="product-image group col-md-5">
                 <input type="file" class="productInput" name="pro-img" value="">
@@ -43,11 +42,11 @@ if (isset($_GET['itemNb'])) {
             <div class="product row justify-content-md-center">
                 <div class="main-desc col-md-7 mb-3">
                     <label for="product-name">Edit Product name </label>
-                    <input type="text" name="pro-name" id="product-name" placeholder="Label" value="<?php echo $productName; ?>">
+                    <input type="text" name="pro-name" id="product-name" placeholder="Label" value="<?php echo $productName; ?>" required>
                 </div>
                 <div class="secondary-desc col-md-7 mb-3">
                     <label for="product-desc" name="product-name">Edit Product description </label>
-                    <textarea id="product-desc" name="pro-desc" placeholder="Description" cols="15" rows="2" class="align-middle purple-border-focus" value=""><?php echo $productDescription; ?></textarea>
+                    <textarea id="product-desc" name="pro-desc" placeholder="Description" cols="15" rows="2" class="align-middle purple-border-focus" value="" required><?php echo $productDescription; ?></textarea>
                 </div>
             </div>
             <div class="aisle row justify-content-md-center col-md-7 mb-3">
@@ -63,11 +62,11 @@ if (isset($_GET['itemNb'])) {
             </div>
             <div class="price row justify-content-md-center col-md-7 mb-3">
                 <label for="price" name="price">Edit Price </label>
-                <input id="price" name="pro-price" type="number" value="<?php echo $productPrice; ?>" placeholder="$" step=".01" min="0">
+                <input id="price" name="pro-price" type="number" value="<?php echo $productPrice; ?>" placeholder="$" step=".01" min="0" required>
             </div>
             <div class="quantity-btn row justify-content-md-center col-md-7 mb-3">
                 <label for="quantity">Edit Units in Store</label>
-                <input type="number" name="pro-qty" id="quantity" value="<?php echo $productStock; ?>" min="0">
+                <input type="number" name="pro-qty" id="quantity" value="<?php echo $productStock; ?>" min="0" required>
             </div>
             <div class="text-center">
                 <button type="reset" class="btn btn-secondary pull-left">
