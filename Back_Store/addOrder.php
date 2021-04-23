@@ -23,14 +23,10 @@ $datafile = '../datas/orders.json';
                 $last_item = end($arrayOrder);
                 $last_item_id = $last_item['id'];
                 $orderElements = array(
-                    'items' => array(
-                        'name'=>"",
-                        'price'=>"",
-                        'amount'=>""
-                    ),
+                    'items' => 'false',
                     'id' => ++$last_item_id,
-                    'itemAmount' => "",
-                    'totalPrice' => "",
+                    'itemAmount' => "0",
+                    'totalPrice' => "0",
                     'user' => $_POST['user'],
                     'date' => $_POST["date"]  
                 );  
