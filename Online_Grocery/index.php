@@ -1,5 +1,8 @@
 <?php require_once("../resources/config.php"); ?>
+<?php $title = "Homepage" ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
+
+
 
   <div class="row">
     <div class="col-lg-2"></div>

@@ -1,7 +1,7 @@
 <?php require_once("../resources/config.php"); ?>
+<?php $title = "Sign Up" ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
 <?php add_base(); ?>  
-<?php $title = "Sign Up" ?>
 
     <div class="row justify-content-center">
       <div class="col-lg-8">
