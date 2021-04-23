@@ -36,7 +36,7 @@ if (isset($_GET['itemNb'])) {
     <div class="center-area">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="product-image group col-md-5">
-                <input type="file" class="productInput" name="pro-img" value="">
+                <input type="file" class="productInput" name="pro-img" value="" required>
                 <img src="../Online_Grocery/img/<?php echo $image; ?>" id="prImg" width=400px height=400px class="float-left">
             </div>
             <div class="product row justify-content-md-center">
