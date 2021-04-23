@@ -146,7 +146,7 @@ function postOrder() {
     delete item.imgSrc;
   });
 
-  order['user'] = 'Anonymous User';
+  order['user'] = userName;
 
   //Get the current date.
   let today = new Date();

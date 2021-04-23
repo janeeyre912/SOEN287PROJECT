@@ -1,5 +1,8 @@
 <?php require_once("../resources/config.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
+<script>
+let userName = "<?php echo $_SESSION['user_name'] = $_SESSION['user_name'] ?: 'Anonymous customer'; ?>";
+</script>
 <script src="shoppingcart.js"></script>
     <div class="row justify-content-center">
       <div class="col-lg-8">
