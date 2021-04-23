@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <link rel="icon" href="img/favicon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Homepage</title>
@@ -18,11 +19,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="main.js"></script>
   <script src="aisle.js"></script>
-  </head>
+</head>
 
-  <body>
-    <!-- Top -->
-<?php include(TEMPLATE_FRONT . DS . "top.php") ?>
+<body>
+  <!-- Top -->
+  <?php include(TEMPLATE_FRONT . DS . "top.php") ?>
 
-    <!-- Navigation bar -->
-<?php include(TEMPLATE_FRONT . DS . "nav_bar.php") ?>
+  <!-- Navigation bar -->
+  <?php include(TEMPLATE_FRONT . DS . "nav_bar.php") ?>
