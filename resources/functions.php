@@ -3,94 +3,90 @@
 $upload_directory = "Back_Store";
 // helper functions
 
-function set_message($msg){
+function set_message($msg)
+{
 
-if(!empty($msg)) {
+  if (!empty($msg)) {
 
-$_SESSION['message'] = $msg;
+    $_SESSION['message'] = $msg;
+  } else {
 
-} else {
-
-$msg = "";
-
-    }
+    $msg = "";
+  }
 }
 
 
-function display_message() {
+function display_message()
+{
 
-    if(isset($_SESSION['message'])) {
+  if (isset($_SESSION['message'])) {
 
-        echo $_SESSION['message'];
-        unset($_SESSION['message']);
-
-    }
+    echo $_SESSION['message'];
+    unset($_SESSION['message']);
+  }
 }
 
 
-function redirect($location){
+function redirect($location)
+{
 
-return header("Location: $location ");
-
+  return header("Location: $location ");
 }
 
 
-function login_user(){
+function login_user()
+{
 
-  if(isset($_POST['submit'])){
-  
-  $userstatus = "invalid";
-  $email = $_POST['email'];
-  $_SESSION['user_name'] = $_POST['email'];
-  $password = $_POST['password'];
- 
-  $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
-  foreach ($xml->children() as $user){
-    if($user->email == $email && $user->password== $password){
-      if($user->type== "base"){
-         $userstatus = "base";
-         $username = $user->username;
-         break;
-      }
-      else if ($user->type == "admin")
-        $userstatus = "admin";
+  if (isset($_POST['submit'])) {
+
+    $userstatus = "invalid";
+    $email = $_POST['email'];
+    $_SESSION['user_name'] = $_POST['email'];
+    $password = $_POST['password'];
+
+    $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
+    foreach ($xml->children() as $user) {
+      if ($user->email == $email && $user->password == $password) {
+        if ($user->type == "base") {
+          $userstatus = "base";
+          $username = $user->username;
+          break;
+        } else if ($user->type == "admin")
+          $userstatus = "admin";
         $username = $user->username;
         break;
+      } else {
+        $userstatus = "invalid";
+      }
     }
-    else{
-     $userstatus = "invalid";
-    }
-  }
-  if($userstatus == "admin"){
-        // $_SESSION['user_name'] = $username;
-       //echo "this is".$_SESSION['user_name'];
-         redirect("../Back_Store"); 
-  }
- else if($userstatus == "base") {
-       //$_SESSION['user_name'] = $username;
-        //echo "this is".$_SESSION['user_name'];
+    if ($userstatus == "admin") {
+      // $_SESSION['user_name'] = $username;
+      //echo "this is".$_SESSION['user_name'];
+      redirect("../Back_Store");
+    } else if ($userstatus == "base") {
+      //$_SESSION['user_name'] = $username;
+      //echo "this is".$_SESSION['user_name'];
       redirect("../Online_Grocery");
-     }
- else{
-       session_destroy();
-       session_start();
-       set_message("Your Password or email address are wrong.");
-       redirect("login.php");
-       
-     }
+    } else {
+      session_destroy();
+      session_start();
+      set_message("Your Password or email address are wrong.");
+      redirect("login.php");
+    }
   }
 }
 
-function display_users(){
-  
+function display_users()
+{
+
   $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
-  foreach ($xml->children() as $user){
+  foreach ($xml->children() as $user) {
     $user_id = $user->id;
     $username = $user->username;
     $lastname = $user->lastname;
     $firstname = $user->firstname;
     $email = $user->email;
-    
+
     $userlist = <<<DELIMETER
     <tr role="row">
         <td row="cell">{$user_id}</td>
@@ -105,26 +101,26 @@ function display_users(){
     </tr> 
     
     DELIMETER;
-    
+
     echo $userlist;
-    
   }
-  
 }
 
-function reload_usersId(){
+function reload_usersId()
+{
   $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
   $i = 1;
-  foreach ($xml->children() as $user){
+  foreach ($xml->children() as $user) {
     $user->id = $i;
     $i++;
-}
-file_put_contents('../datas/user.xml',$xml->asXML());
+  }
+  file_put_contents('../datas/user.xml', $xml->asXML());
 }
 
-function add_user(){
-  
-  if (isset($_POST['add_user'])){
+function add_user()
+{
+
+  if (isset($_POST['add_user'])) {
     $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
     $id = $xml->user->count() + 1;
     $type = "admin";
@@ -134,24 +130,25 @@ function add_user(){
     $password = $_POST['password'];
     $telephone = $_POST['telephone'];
     $email = $_POST['email'];
-    $addxml= $xml->addChild('user');
-    $addxml->addChild('id',$id);
-    $addxml->addChild('type',$type);
-    $addxml->addChild('username',$username);
-    $addxml->addChild('lastname',$lastname);
-    $addxml->addChild('firstname',$firstname);
-    $addxml->addChild('password',$password);
-    $addxml->addChild('telephone',$telephone);
-    $addxml->addChild('email',$email);
-    file_put_contents('../datas/user.xml',$xml->asXML());
+    $addxml = $xml->addChild('user');
+    $addxml->addChild('id', $id);
+    $addxml->addChild('type', $type);
+    $addxml->addChild('username', $username);
+    $addxml->addChild('lastname', $lastname);
+    $addxml->addChild('firstname', $firstname);
+    $addxml->addChild('password', $password);
+    $addxml->addChild('telephone', $telephone);
+    $addxml->addChild('email', $email);
+    file_put_contents('../datas/user.xml', $xml->asXML());
     set_message("USER CREATED");
-    redirect("index.php?users");exit();
+    redirect("index.php?users");
+    exit();
   }
-
 }
 
-function add_base(){
-  if (isset($_POST['add_base'])){
+function add_base()
+{
+  if (isset($_POST['add_base'])) {
     $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
     $id = $xml->user->count() + 1;
     $type = "base";
@@ -161,27 +158,29 @@ function add_base(){
     $password = $_POST['password'];
     $telephone = $_POST['telephone'];
     $email = $_POST['email'];
-    $addxml= $xml->addChild('user');
-    $addxml->addChild('id',$id);
-    $addxml->addChild('type',$type);
-    $addxml->addChild('username',$username);
-    $addxml->addChild('lastname',$lastname);
-    $addxml->addChild('firstname',$firstname);
-    $addxml->addChild('password',$password);
-    $addxml->addChild('telephone',$telephone);
-    $addxml->addChild('email',$email);
-    file_put_contents('../datas/user.xml',$xml->asXML());
+    $addxml = $xml->addChild('user');
+    $addxml->addChild('id', $id);
+    $addxml->addChild('type', $type);
+    $addxml->addChild('username', $username);
+    $addxml->addChild('lastname', $lastname);
+    $addxml->addChild('firstname', $firstname);
+    $addxml->addChild('password', $password);
+    $addxml->addChild('telephone', $telephone);
+    $addxml->addChild('email', $email);
+    file_put_contents('../datas/user.xml', $xml->asXML());
     set_message("BASE CREATED");
-    redirect("../Online_Grocery/login.php");exit();
+    redirect("../Online_Grocery/login.php");
+    exit();
   }
 }
 
 
-function displayProductList(){
+function displayProductList()
+{
 
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach ($xml->children() as $product){
+  foreach ($xml->children() as $product) {
 
     $product_id = $product->itemNb;
     $productName = $product->name;
@@ -203,32 +202,31 @@ function displayProductList(){
     </tr> 
     
     DELIMETER;
-    
+
     echo $productlist;
   }
-    
-
 }
 
-function displayProduct(){
+function displayProduct()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach ($xml->children() as $product){
-    
-    if($product->itemNb == $_GET['itemNb']){
+  foreach ($xml->children() as $product) {
+
+    if ($product->itemNb == $_GET['itemNb']) {
       $id = $product->itemNb;
       $name = $product->name;
-      $price= $product->price;
+      $price = $product->price;
       $ext = $product->ext;
-      $desc= $product->desc;
+      $desc = $product->desc;
       $image = $name . "." . $ext;
       break;
     }
   }
 
-  
-    
-    $productInfo = <<<DELIMETER
+
+
+  $productInfo = <<<DELIMETER
 
     <div class="main">
       <div class="row justify-content-center">
@@ -305,23 +303,21 @@ function displayProduct(){
     </div>
     DELIMETER;
 
-    echo $productInfo;
-  
-
-
+  echo $productInfo;
 }
-function displayALLProduct(){
+function displayALLProduct()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-        foreach($xml->children() as $product){
-      
-              $name = $product->name;
-              $ext = $product->ext;
-              $image = $name . "." . $ext;
-              $price = $product->price;
-              
+  foreach ($xml->children() as $product) {
 
-              $productImg = <<<DELIMETER
+    $name = $product->name;
+    $ext = $product->ext;
+    $image = $name . "." . $ext;
+    $price = $product->price;
+
+
+    $productImg = <<<DELIMETER
 
               <div class="col-md-4 align-self-start">
                 <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -334,24 +330,23 @@ function displayALLProduct(){
               </div>
               DELIMETER;
 
-              echo $productImg;
-
-
-    }
+    echo $productImg;
+  }
 }
 
-function displayFruitAndVegetableProducts(){
+function displayFruitAndVegetableProducts()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-        foreach($xml->children() as $product){
-          if($product->aisle == "Fruits and Vegetables"){
-              $name = $product->name;
-              $ext = $product->ext;
-              $image = $name . "." . $ext;
-              $price = $product->price;
-              
+  foreach ($xml->children() as $product) {
+    if ($product->aisle == "Fruits and Vegetables") {
+      $name = $product->name;
+      $ext = $product->ext;
+      $image = $name . "." . $ext;
+      $price = $product->price;
 
-              $productImg = <<<DELIMETER
+
+      $productImg = <<<DELIMETER
 
               <div class="col-md-4 align-self-start">
                 <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -364,26 +359,25 @@ function displayFruitAndVegetableProducts(){
               </div>
               DELIMETER;
 
-              echo $productImg;
-
-          }
-
+      echo $productImg;
     }
+  }
 }
 
-function displayMeatAndPoultryProducts(){
+function displayMeatAndPoultryProducts()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach($xml->children() as $product){
+  foreach ($xml->children() as $product) {
 
-      if($product->aisle == "Meat and Poultry"){
-        $name = $product->name;
-        $ext = $product->ext;
-        $image = $name . "." . $ext;
-        $price = $product->price;
-        
+    if ($product->aisle == "Meat and Poultry") {
+      $name = $product->name;
+      $ext = $product->ext;
+      $image = $name . "." . $ext;
+      $price = $product->price;
 
-        $productImg = <<<DELIMETER
+
+      $productImg = <<<DELIMETER
 
         <div class="col-md-4 align-self-start">
           <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -396,26 +390,25 @@ function displayMeatAndPoultryProducts(){
         </div>
         DELIMETER;
 
-        echo $productImg;
-
+      echo $productImg;
     }
-
   }
 }
 
-function displayDairyAndEggsProducts(){
+function displayDairyAndEggsProducts()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach($xml->children() as $product){
+  foreach ($xml->children() as $product) {
 
-      if($product->aisle == "Dairy and Eggs"){
-          $name = $product->name;
-          $ext = $product->ext;
-          $image = $name . "." . $ext;
-          $price = $product->price;
-          
+    if ($product->aisle == "Dairy and Eggs") {
+      $name = $product->name;
+      $ext = $product->ext;
+      $image = $name . "." . $ext;
+      $price = $product->price;
 
-          $productImg = <<<DELIMETER
+
+      $productImg = <<<DELIMETER
 
           <div class="col-md-4 align-self-start">
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -428,26 +421,25 @@ function displayDairyAndEggsProducts(){
           </div>
           DELIMETER;
 
-          echo $productImg;
-
+      echo $productImg;
     }
-
   }
 }
 
-function displaySeafoodProducts(){
+function displaySeafoodProducts()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach($xml->children() as $product){
+  foreach ($xml->children() as $product) {
 
-      if($product->aisle == "seafood"){
-          $name = $product->name;
-          $ext = $product->ext;
-          $image = $name . "." . $ext;
-          $price = $product->price;
-          
+    if ($product->aisle == "seafood") {
+      $name = $product->name;
+      $ext = $product->ext;
+      $image = $name . "." . $ext;
+      $price = $product->price;
 
-          $productImg = <<<DELIMETER
+
+      $productImg = <<<DELIMETER
 
           <div class="col-md-4 align-self-start">
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -460,26 +452,25 @@ function displaySeafoodProducts(){
           </div>
           DELIMETER;
 
-          echo $productImg;
-
+      echo $productImg;
     }
-
   }
 }
 
-function displayBeverageProducts(){
+function displayBeverageProducts()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach($xml->children() as $product){
+  foreach ($xml->children() as $product) {
 
-      if($product->aisle == "beverages"){
-          $name = $product->name;
-          $ext = $product->ext;
-          $image = $name . "." . $ext;
-          $price = $product->price;
-          
+    if ($product->aisle == "beverages") {
+      $name = $product->name;
+      $ext = $product->ext;
+      $image = $name . "." . $ext;
+      $price = $product->price;
 
-          $productImg = <<<DELIMETER
+
+      $productImg = <<<DELIMETER
 
           <div class="col-md-4 align-self-start">
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -492,27 +483,26 @@ function displayBeverageProducts(){
           </div>
           DELIMETER;
 
-          echo $productImg;
-
+      echo $productImg;
     }
-
   }
 }
 
 
-function displayBeerAndWineProducts(){
+function displayBeerAndWineProducts()
+{
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
 
-  foreach($xml->children() as $product){
+  foreach ($xml->children() as $product) {
 
-      if($product->aisle == "Beer and Wine"){
-          $name = $product->name;
-          $ext = $product->ext;
-          $image = $name . "." . $ext;
-          $price = $product->price;
-          
+    if ($product->aisle == "Beer and Wine") {
+      $name = $product->name;
+      $ext = $product->ext;
+      $image = $name . "." . $ext;
+      $price = $product->price;
 
-          $productImg = <<<DELIMETER
+
+      $productImg = <<<DELIMETER
 
           <div class="col-md-4 align-self-start">
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
@@ -525,87 +515,103 @@ function displayBeerAndWineProducts(){
           </div>
           DELIMETER;
 
-          echo $productImg;
-
-    }
-
-  }
-}
-
-function add_product(){
-  if(isset($_POST["add_product"])) {
-$name = $_POST["pro-name"];
-$description = $_POST["pro-desc"];
-$aisle = $_POST["aisle"];
-$price = $_POST["pro-price"];
-$units = $_POST["quantity"];
-
-$target_dir = "../Online_Grocery/img/";
-$target_file = $target_dir . basename($_FILES["image"]["name"]);
-
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-$target_file = $target_dir . strtolower($name) . "." . $imageFileType;
-
-// Check if image file is a actual image or fake image
-
-  $check = getimagesize($_FILES["image"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
-  }
-
-
-// Check if $uploadOk is set to 0 by an error
-if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-  // if everything is ok, try to upload file
-  } else {
-    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-      echo "The file ". htmlspecialchars( basename( $_FILES["image"]["name"])). " has been uploaded as " . $name . "." . $imageFileType ;
-    } else {
-      echo "Sorry, there was an error uploading your file.";
+      echo $productImg;
     }
   }
-
-
-// Update
-$file = '../datas/product.xml';
-$xml = simplexml_load_file($file);
-
-$products = $xml;
-
-$product = $products->addChild('product');
-$product->addChild('itemNb',count($products));
-$product->addChild('name',$name);
-$product->addChild('desc',$description);
-$product->addChild('aisle',$aisle);
-$product->addChild('price',$price);
-$product->addChild('stock',$units);
-$product->addChild('extension',$imageFileType);
-
-$xml->asXML($file);
-
-set_message("Product \"" . $name . "\" Added");
-  redirect("./index.php?products");
 }
 
+function add_product()
+{
+  if (isset($_POST["add_product"])) {
+    $name = $_POST["pro-name"];
+
+    //check if name already exists
+    $file = '../datas/product.xml';
+    $xml = simplexml_load_file($file) or die("Error: Cannot create object");;
+    $products = $xml;
+
+    $process = true;
+    foreach ($xml->children() as $product) {
+      if ($product->name == $name) {
+        set_message("The name " . $name . " is already taken by another product.");
+        $process = false;
+      }
+    }
+
+
+    if ($process) {
+      $description = $_POST["pro-desc"];
+      $aisle = $_POST["aisle"];
+      $price = $_POST["pro-price"];
+      $units = $_POST["quantity"];
+
+      $target_dir = "../Online_Grocery/img/";
+      $target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+      $uploadOk = 1;
+      $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+      $target_file = $target_dir . strtolower($name) . "." . $imageFileType;
+
+      // Check if image file is a actual image or fake image
+
+      $check = getimagesize($_FILES["image"]["tmp_name"]);
+      if ($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+      } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+      }
+
+
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+      } else {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+          echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded as " . $name . "." . $imageFileType;
+        } else {
+          echo "Sorry, there was an error uploading your file.";
+        }
+      }
+
+
+      // Update
+      $file = '../datas/product.xml';
+      $xml = simplexml_load_file($file);
+
+      $products = $xml;
+
+      $product = $products->addChild('product');
+      $product->addChild('itemNb', count($products));
+      $product->addChild('name', $name);
+      $product->addChild('desc', $description);
+      $product->addChild('aisle', $aisle);
+      $product->addChild('price', $price);
+      $product->addChild('stock', $units);
+      $product->addChild('extension', $imageFileType);
+
+      $xml->asXML($file);
+
+      set_message("Product \"" . $name . "\" Added");
+    }
+    redirect("./index.php?products");
+  }
 }
 
 
-function edit_product(){
+function edit_product()
+{
 
-  if(isset($_POST['update_product'])){
+  if (isset($_POST['update_product'])) {
 
     $productName = $_POST['pro-name'];
     $productDescription = $_POST['pro-desc'];
     $productAisle = $_POST['aisle'];
     $productPrice = $_POST['pro-price'];
     $productStock = $_POST['pro-qty'];
-    
+
     $file = $_FILES['pro-img'];
     $fileTmpPath = $_FILES['pro-img']['tmp_name'];
     $fileName = $_FILES['pro-img']['name'];
@@ -619,34 +625,28 @@ function edit_product(){
     $newFileName = $productImgName . "." . $fileExtension;
     $allowedfileExtensions = array('jpg', 'jpeg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc');
     if (in_array($fileExtension, $allowedfileExtensions)) {
-      if($fileError === 0){
-        if($fileSize < 1000000){
-          
+      if ($fileError === 0) {
+        if ($fileSize < 1000000) {
         } else {
           set_message("File uploaded is too large!");
         }
       } else {
         set_message("There was an error uploading your file!");
       }
-        
     } else {
       set_message("Image format not supported.");
     }
     $target_dir = "../Online_Grocery/img/" . $newFileName;
-    if(move_uploaded_file($fileTmpPath, $target_dir))
-    {
-        set_message("File successfully uploaded!");
+    if (move_uploaded_file($fileTmpPath, $target_dir)) {
+      set_message("File successfully uploaded!");
+    } else {
+      set_message('There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.');
     }
-    else
-    {
-        set_message('There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.');
-        
-    }
-    
+
     $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
-    foreach($xml->children() as $product){
-      if($product->itemNb == $_GET['itemNb']){
-        
+    foreach ($xml->children() as $product) {
+      if ($product->itemNb == $_GET['itemNb']) {
+
         $product->name = $productName;
         $product->desc = $productDescription;
         $product->aisle = $productAisle;
@@ -655,10 +655,7 @@ function edit_product(){
         $product->ext = $fileExtension;
       }
     }
-    file_put_contents('../datas/product.xml',$xml->asXML());
-    
+    file_put_contents('../datas/product.xml', $xml->asXML());
+    redirect("./index.php?products");
   }
 }
-
-
-  
