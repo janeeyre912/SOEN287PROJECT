@@ -1,4 +1,5 @@
 <?php require_once("../resources/config.php"); ?>
+<?php $title = "Our Products" ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
 
 <?php

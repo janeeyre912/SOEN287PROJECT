@@ -1,4 +1,5 @@
 <?php require_once("../resources/config.php"); ?>
+<?php $title = "Checkout" ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
 <script>
 let userName = "<?php echo $_SESSION['user_name'] = $_SESSION['user_name'] ?: 'Anonymous customer'; ?>";
