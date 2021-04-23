@@ -112,6 +112,16 @@ function display_users(){
   
 }
 
+function reload_usersId(){
+  $xml = simplexml_load_file("../datas/user.xml") or die("Error: Cannot create object");
+  $i = 1;
+  foreach ($xml->children() as $user){
+    $user->id = $i;
+    $i++;
+}
+file_put_contents('../datas/user.xml',$xml->asXML());
+}
+
 function add_user(){
   
   if (isset($_POST['add_user'])){
