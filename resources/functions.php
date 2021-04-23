@@ -615,8 +615,8 @@ function edit_product(){
     $fileNameCmps = explode(".", $fileName);
     $fileExtension = strtolower(end($fileNameCmps));
 
-    $productName = strtolower($productName);
-    $newFileName = $productName . "." . $fileExtension;
+    $productImgName = strtolower($productName);
+    $newFileName = $productImgName . "." . $fileExtension;
     $allowedfileExtensions = array('jpg', 'jpeg', 'gif', 'png', 'zip', 'txt', 'xls', 'doc');
     if (in_array($fileExtension, $allowedfileExtensions)) {
       if($fileError === 0){
