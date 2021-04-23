@@ -1,7 +1,6 @@
 <?php require_once("../resources/config.php"); ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
-    <!--NavBarEND-->
-
+<script src="shoppingcart.js"></script>
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <!--- middle of page -->
@@ -112,7 +111,7 @@
                     </li>
                   </ul>
 
-                  <button class="btn btn-primary btn-block"  onClick="postOrder();">
+                  <button class="btn btn-primary btn-block"  onClick="postOrder(); resetCart(); displayCart();">
                     Checkout
                   </button>
                 </div>
@@ -172,8 +171,5 @@
         </div>
       </div>
     </div>
-
-    <script src="main.js" async></script>
-    <script src="shoppingcart.js" async></script>
   </body>
 </html>

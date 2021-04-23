@@ -146,7 +146,7 @@ function postOrder() {
     delete item.imgSrc;
   });
 
-  order['user'] = 'PLACEHOLDER';
+  order['user'] = 'Anonymous User';
 
   //Get the current date.
   let today = new Date();
@@ -156,7 +156,7 @@ function postOrder() {
 
   //Get the order ID from the server.
   let idRequest = new XMLHttpRequest();
-  idRequest.open('GET', '../../Back_Store/getNextOrderID.php', true);
+  idRequest.open('GET', '../Back_Store/getNextOrderID.php', true);
   //Specify how the response should be intepreted.
   idRequest.responseType = 'text';
 
@@ -168,7 +168,7 @@ function postOrder() {
 
     //Create a new AJAX request to postOrder.php
     let orderRequest = new XMLHttpRequest();
-    orderRequest.open('GET', '../../Back_Store/postOrder.php?' + toQueryStr(order), true);
+    orderRequest.open('GET', '../Back_Store/postOrder.php?' + toQueryStr(order), true);
     //Specify how the response should be intepreted.
     orderRequest.responseType = 'text';
 
