@@ -629,18 +629,23 @@ function edit_product()
         if ($fileSize < 1000000) {
         } else {
           set_message("File uploaded is too large!");
+          display_message();
         }
       } else {
         set_message("There was an error uploading your file!");
+        display_message();
       }
     } else {
       set_message("Image format not supported.");
+      display_message();
     }
     $target_dir = "../Online_Grocery/img/" . $newFileName;
     if (move_uploaded_file($fileTmpPath, $target_dir)) {
       set_message("File successfully uploaded!");
+      display_message();
     } else {
       set_message('There was some error moving the file to upload directory. Please make sure the upload directory is writable by web server.');
+      display_message();
     }
 
     $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
