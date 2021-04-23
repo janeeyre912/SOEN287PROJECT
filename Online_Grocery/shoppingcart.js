@@ -92,7 +92,7 @@ function displayCart() {
               </i> Remove item
               </a>
             </div>
-            <strong>Price per item: $<strong class="itemSubTotalPrice">${cartItems.items[i].price}</strong></strong>
+            <strong>$<span class="itemSubTotalPrice">${cartItems.items[i].price}</span></strong>
           </div>
         </div>
       </div>
