@@ -3,6 +3,13 @@
 
 <?php
 
+  if(isset($_GET['allproduct'])){
+
+
+    include(TEMPLATE_FRONT . "/allproduct.php");
+
+
+}
         if(isset($_GET['fruits_vegetables'])){
 
 

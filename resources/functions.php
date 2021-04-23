@@ -310,6 +310,35 @@ function displayProduct(){
 
 
 }
+function displayALLProduct(){
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
+
+        foreach($xml->children() as $product){
+      
+              $name = $product->name;
+              $ext = $product->ext;
+              $image = $name . "." . $ext;
+              $price = $product->price;
+              
+
+              $productImg = <<<DELIMETER
+
+              <div class="col-md-4 align-self-start">
+                <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
+                  <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
+                </a>
+                <p class="item name">$name per unit</p>
+                <p class="item price">$price</p>
+                <button type="button" class="btn btn-danger">Add to Cart</button>
+
+              </div>
+              DELIMETER;
+
+              echo $productImg;
+
+
+    }
+}
 
 function displayFruitAndVegetableProducts(){
   $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
