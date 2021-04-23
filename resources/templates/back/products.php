@@ -7,6 +7,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Products</li>
                 </ol>
             </nav>
+            <?php display_message(); ?>
             <table class="table table-hover" role="table">
                 <thead role="rowgroup">
                 <tr role="row">
@@ -26,7 +27,7 @@
             </table>
             <div class="row justify-content-end">
             <div>
-                <button type="button" class="btn btn-dark"onclick="window.location.href='index.php?add_product.php'">Add a product</button>
+                <button type="button" class="btn btn-dark"onclick="window.location.href='index.php?add_product'">Add a product</button>
                 <button type="button" class="btn btn-dark btn-confirm2">Save</button>
                 <button type="button" class="btn btn-dark btn-confirm1"; style="margin-right: 20px;">Cancel</button>
             </div>

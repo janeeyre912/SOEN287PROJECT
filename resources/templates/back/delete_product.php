@@ -1,20 +1,21 @@
 <?php require_once("../resources/config.php");
 
 if(isset($_GET['delete_product_id'])){
-  $xml = simplexml_load_file("../datas/products.xml") or die("Error: Cannot create object");
+  $xml = simplexml_load_file("../datas/product.xml") or die("Error: Cannot create object");
   $replace = false;
-  foreach ($xml->product as $theProduct){
+  foreach ($xml->children() as $theProduct){
     if($replace){
-        $dom = dom_import_simplexml($theProduct);
-        $dom->itemNb(0)->nodeValue--;
+        $number = $theProduct->itemNb;
+        $theProduct->itemNb = $number-1;
     }  
-    else if($theProduct->id == $_GET['delete_product_id']){
+    else if($theProduct->itemNb == $_GET['delete_product_id']){
         $dom = dom_import_simplexml($theProduct);
-        $dom->parentNode->removeChild($dom);
+        $replace = true;
       }
   }
-  file_put_contents('../datas/products.xml',$xml->asXML());
-  set_message("Product Deleted");
+  $dom->parentNode->removeChild($dom);
+  file_put_contents('../datas/product.xml',$xml->asXML());
+  set_message("Product \"" . $theProduct->name . "\" Deleted");
   redirect("./index.php?products");
 }
 

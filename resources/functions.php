@@ -188,7 +188,7 @@ function displayProductList(){
         <td row="cell">{$productStock}</td>
         <td>
             <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_product&itemNb={$product->itemNb}'">Edit</button>
-            <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_user_id={$user->id}'">Delete</button>
+            <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_product_id={$product->itemNb}'">Delete</button>
         </td> 
     </tr> 
     
@@ -492,6 +492,70 @@ function displayBeerAndWineProducts(){
 
   }
 }
+
+function add_product(){
+  if(isset($_POST["add_product"])) {
+$name = $_POST["pro-name"];
+$description = $_POST["pro-desc"];
+$aisle = $_POST["aisle"];
+$price = $_POST["pro-price"];
+$units = $_POST["quantity"];
+
+$target_dir = "../Online_Grocery/img/";
+$target_file = $target_dir . basename($_FILES["image"]["name"]);
+
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$target_file = $target_dir . strtolower($name) . "." . $imageFileType;
+
+// Check if image file is a actual image or fake image
+
+  $check = getimagesize($_FILES["image"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+  // if everything is ok, try to upload file
+  } else {
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+      echo "The file ". htmlspecialchars( basename( $_FILES["image"]["name"])). " has been uploaded as " . $name . "." . $imageFileType ;
+    } else {
+      echo "Sorry, there was an error uploading your file.";
+    }
+  }
+
+
+// Update
+$file = '../datas/product.xml';
+$xml = simplexml_load_file($file);
+
+$products = $xml;
+
+$product = $products->addChild('product');
+$product->addChild('itemNb',count($products));
+$product->addChild('name',$name);
+$product->addChild('desc',$description);
+$product->addChild('aisle',$aisle);
+$product->addChild('price',$price);
+$product->addChild('stock',$units);
+$product->addChild('extension',$imageFileType);
+
+$xml->asXML($file);
+
+set_message("Product \"" . $name . "\" Added");
+  redirect("./index.php?products");
+}
+
+}
+
 
 function edit_product(){
 
