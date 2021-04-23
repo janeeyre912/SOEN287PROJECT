@@ -10,7 +10,7 @@
     <?php 
     
     if(isset($_SESSION['user_name'])){
-      echo "<span>Welcome,",$_SESSION['user_name']," !</span><br><a href='../Back_Store/logout.php'>Log out</a>";
+      echo "<span>Welcome, ",$_SESSION['user_name'],"!</span><br><a href='../Back_Store/logout.php'>Log out</a>";
     }
     else 
     echo"<a class='login' href='login.php'>Login</a> <a class='register' href='signup.php'>Register</a>"
