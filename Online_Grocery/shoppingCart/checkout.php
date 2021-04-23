@@ -215,7 +215,7 @@
                     </li>
                   </ul>
 
-                  <button class="btn btn-primary btn-block"  onClick="postOrder();">
+                  <button class="btn btn-primary btn-block"  onClick="postOrder(); resetCart(); displayCart();">
                     Checkout
                   </button>
                 </div>
