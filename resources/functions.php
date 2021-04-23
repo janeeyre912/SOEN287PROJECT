@@ -532,8 +532,8 @@ function add_product()
 
     $process = true;
     foreach ($xml->children() as $product) {
-      if ($product->name == $name) {
-        set_message("The name " . $name . " is already taken by another product.");
+      if (strcasecmp($product->name, $name) == 0) {
+        set_message("The name \"" . $name . "\" is already taken by another product.");
         $process = false;
       }
     }
