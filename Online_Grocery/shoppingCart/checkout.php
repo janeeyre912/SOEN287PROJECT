@@ -70,7 +70,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="../">&nbsp HOME &nbsp<span class="sr-only">(current)</span></a>
         </li>
-        <a class="nav-link" href="#">&nbsp ALL PRODUCTS &nbsp</a>
+        <a class="nav-link" href="../basicPage.php?allproduct">&nbsp ALL PRODUCTS &nbsp</a>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             AISLES
@@ -86,7 +86,7 @@
             <a class="dropdown-item" href="#">More...</a>
           </div>
         </li>
-        <a class="nav-link cart" href="shoppingCart/checkout.php"><i class="fas fa-shopping-cart"></i>&nbsp CART <span>0</span></a>
+        <a class="nav-link cart" href="checkout.php"><i class="fas fa-shopping-cart"></i>&nbsp CART <span>0</span></a>
 
       </ul>
       <form class="form-inline my-2 my-lg-0">
