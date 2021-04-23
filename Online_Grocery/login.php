@@ -1,7 +1,7 @@
 <?php require_once("../resources/config.php"); ?>
 <?php $title = "Login" ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php"); ?>
-<h3 class="text-center bg-warning"><?php display_message(); ?></h3>
+
  <?php login_user(); ?>
 <div class="row justify-content-center">
   <div class="col-lg-8">
