@@ -100,7 +100,9 @@
             <span id='message'></span>
           </div>
           <input
+            id="CreateYourAccount"
             name="add_base"
+            disabled
             type="submit"
             class="btn btn-primary"
             style="background-color: #59886b"
@@ -118,6 +120,8 @@
               if(document.getElementById('password').value == document.getElementById('confirmPassword').value){
                 document.getElementById("message").style.color="green";
                 document.getElementById("message").innerHTML = "Passwords matches!";
+                document.getElementById("CreateYourAccount").disabled = false;
+
               }else {
                 document.getElementById("message").style.color = 'red';
                 document.getElementById("message").innerHTML = "Please match the passwords!";
@@ -126,10 +130,6 @@
             }
           </script>
 
-          
-        
-
-        
       </div>
     </div>
 
