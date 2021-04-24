@@ -68,10 +68,7 @@ function login_user()
       //echo "this is".$_SESSION['user_name'];
       redirect("../Online_Grocery");
     } else {
-      session_destroy();
-      session_start();
-      set_message("Your Password or email address are wrong.");
-      redirect("login.php");
+    echo '<script> alert("Your password or email address is wrong ")</script>';
     }
   }
 }
