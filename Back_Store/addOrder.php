@@ -24,9 +24,6 @@ $datafile = '../datas/orders.json';
                 $last_item_id = $last_item['id'];
                 $orderElements = array(
                     'items' => array(
-                        'name'=>"",
-                        'price'=>"",
-                        'amount'=>""
                     ),
                     'id' => ++$last_item_id,
                     'itemAmount' => "0",
