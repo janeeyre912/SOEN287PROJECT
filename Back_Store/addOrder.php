@@ -18,22 +18,25 @@ $datafile = '../datas/orders.json';
       {  
            if(file_exists($datafile))  
            {  
-                $orderfile = file_get_contents($datafile);
-                $arrayOrder = json_decode($orderfile, true);
-                $last_item = max($arrayOrder);
-                $last_item_id = $last_item['id'];
+                //Get the number from the ID file.
+                $last_item_id = (int)(file_get_contents('../datas/orderID.txt'));
+                //Increment the number on the file.
+                file_put_contents('../datas/orderID.txt', ++$last_item_id);
+
+                $final_data = json_decode(file_get_contents($datafile));
+
                 $orderElements = array(
-                    'items' => array(
-                    ),
-                    'id' => ++$last_item_id,
+                    'items' => array(),
+                    'id' => $last_item_id,
                     'itemAmount' => "0",
                     'totalPrice' => "0",
                     'user' => $_POST['user'],
                     'date' => $_POST["date"]
                 );  
-                $arrayOrder[] = $orderElements;  
-                $final_data = json_encode($arrayOrder);
-                if(file_put_contents($datafile, $final_data))  
+
+                array_unshift($final_data, $orderElements);
+
+                if(file_put_contents($datafile, json_encode($final_data)))  
                 {  
                      $message = "<label class='text-success'>File added Successfully</p>";  
                 }  
