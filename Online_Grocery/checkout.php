@@ -2,7 +2,7 @@
 <?php $title = "Checkout" ?>
 <?php include(TEMPLATE_FRONT . DS . "header.php") ?>
 <script>
-let userName = "<?php echo isset($_SESSION['user_name']) ?: 'Guest'; ?>";
+let userName = "<?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Guest'; ?>";
 </script>
 <script src="shoppingcart.js"></script>
     <div class="row justify-content-center">
