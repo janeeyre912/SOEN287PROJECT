@@ -587,7 +587,7 @@ function add_product()
       $product->addChild('aisle', $aisle);
       $product->addChild('price', $price);
       $product->addChild('stock', $units);
-      $product->addChild('extension', $imageFileType);
+      $product->addChild('ext', $imageFileType);
 
       $xml->asXML($file);
 
