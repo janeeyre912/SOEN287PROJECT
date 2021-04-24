@@ -29,8 +29,8 @@ $datafile = '../datas/orders.json';
                         'amount'=>""
                     ),
                     'id' => ++$last_item_id,
-                    'itemAmount' => "",
-                    'totalPrice' => "",
+                    'itemAmount' => "0",
+                    'totalPrice' => "0",
                     'user' => $_POST['user'],
                     'date' => $_POST["date"]
                 );  
