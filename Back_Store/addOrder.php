@@ -20,15 +20,19 @@ $datafile = '../datas/orders.json';
            {  
                 $orderfile = file_get_contents($datafile);
                 $arrayOrder = json_decode($orderfile, true);
-                $last_item = end($arrayOrder);
+                $last_item = max($arrayOrder);
                 $last_item_id = $last_item['id'];
                 $orderElements = array(
-                    'items' => 'false',
+                    'items' => array(
+                        'name'=>"",
+                        'price'=>"",
+                        'amount'=>""
+                    ),
                     'id' => ++$last_item_id,
-                    'itemAmount' => "0",
-                    'totalPrice' => "0",
+                    'itemAmount' => "",
+                    'totalPrice' => "",
                     'user' => $_POST['user'],
-                    'date' => $_POST["date"]  
+                    'date' => $_POST["date"]
                 );  
                 $arrayOrder[] = $orderElements;  
                 $final_data = json_encode($arrayOrder);
