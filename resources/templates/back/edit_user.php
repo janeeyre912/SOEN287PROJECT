@@ -84,12 +84,12 @@ if(isset($_GET['id'])){
         </div>
        <div class="form-row">
             <div class="col-lg-4 mb-3">
-                <label for="email">ID</label>
-                <input type="text"  name="email" placeholder="id" value="<?php echo $id; ?>"  readonly>
+                <label for="id">ID</label>
+                <input type="text"  name="id" placeholder="id" value="<?php echo $id; ?>"  readonly>
             </div>
             <div class="col-lg-4 mb-3">
-                <label for="password">Type</label>
-                <input type="text"  name="password" placeholder="Password" value="<?php echo $type; ?>" readonly>
+                <label for="type">Type</label>
+                <input type="text"  name="type" placeholder="type" value="<?php echo $type; ?>" readonly>
             </div>
         </div>
 
