@@ -298,6 +298,67 @@ function displayProduct()
         </div>
       </div>
     </div>
+    
+    <script>
+    var itemQuantity;
+    var price = document.getElementsByClassName('price')[0]
+    var itemPrice = parseFloat(price.innerText)
+    
+    document.querySelector(".plus").addEventListener('click', function (){
+    
+        itemQuantity = document.getElementsByClassName('quantity')[0].value;
+        price.innerText = Math.round(itemQuantity * itemPrice * 100) / 100
+    })
+    
+    document.querySelector(".minus").addEventListener('click', function (){
+    
+        itemQuantity = document.getElementsByClassName('quantity')[0].value;
+        price.innerText = Math.round(itemQuantity * itemPrice * 100) / 100
+    })
+    
+    var quantityInputs = document.querySelector(".quantity")
+    quantityInputs.addEventListener('change', function(event){
+            var input = event.target
+            if(isNaN(input.value) || input.value <= 0){
+                input.value = 1
+            }
+            updateItemPrice()
+        })
+    
+    
+    function updateItemPrice(){
+        itemQuantity = document.getElementsByClassName('quantity')[0].value
+        price.innerText = Math.round(itemQuantity * itemPrice * 100) / 100
+    }
+
+    let cartButton;
+    
+    let currentProduct = {};
+    
+    window.addEventListener("load", () => {
+      //Record the item's data.
+      currentProduct.name = document.getElementsByTagName("h3")[0].innerText;
+      currentProduct.imgSrc = document
+        .querySelector(".itemImg")
+        .getAttribute("src");
+      currentProduct.price = parseFloat(
+        document.querySelector(".itemPrice").innerText.replace("$", "")
+      );
+    currentProduct.amount =  parseInt(document.querySelector(".quantity").value);
+      //Select all 'add to cart' buttons on the page (only one on this page).
+      cartButton = document.querySelector(".btn-danger");
+    
+      //Callback to click event.
+      //If a button is clicked, add the product to cart.
+      cartButton.addEventListener("click", () => {
+        //Add the product to the browser storage.
+        addItemToCart(
+          currentProduct,
+        parseInt(document.querySelector(".quantity").value)
+        );
+      });
+    });
+    </script>
     DELIMETER;
 
   echo $productInfo;
@@ -320,7 +381,7 @@ function displayALLProduct()
                 <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
                   <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
                 </a>
-                <p class="item name">$name per unit</p>
+                <p class="item name">$name</p>
                 <p class="item price">$price</p>
                 <button type="button" class="btn btn-danger">Add to Cart</button>
 
@@ -349,7 +410,7 @@ function displayFruitAndVegetableProducts()
                 <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
                   <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
                 </a>
-                <p class="item name">$name per unit</p>
+                <p class="item name">$name</p>
                 <p class="item price">$price</p>
                 <button type="button" class="btn btn-danger">Add to Cart</button>
 
@@ -380,7 +441,7 @@ function displayMeatAndPoultryProducts()
           <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
             <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
           </a>
-          <p class="item name">$name per unit</p>
+          <p class="item name">$name</p>
           <p class="item price">$price</p>
           <button type="button" class="btn btn-danger">Add to Cart</button>
 
@@ -411,7 +472,7 @@ function displayDairyAndEggsProducts()
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
               <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
             </a>
-            <p class="item name">$name per unit</p>
+            <p class="item name">$name </p>
             <p class="item price">$price</p>
             <button type="button" class="btn btn-danger">Add to Cart</button>
 
@@ -442,7 +503,7 @@ function displaySeafoodProducts()
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
               <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
             </a>
-            <p class="item name">$name per unit</p>
+            <p class="item name">$name </p>
             <p class="item price">$price</p>
             <button type="button" class="btn btn-danger">Add to Cart</button>
 
@@ -473,7 +534,7 @@ function displayBeverageProducts()
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
               <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
             </a>
-            <p class="item name">$name per unit</p>
+            <p class="item name">$name</p>
             <p class="item price">$price</p>
             <button type="button" class="btn btn-danger">Add to Cart</button>
 
@@ -505,7 +566,7 @@ function displayBeerAndWineProducts()
             <a onclick ="window.location.href = 'basicPage.php?item&itemNb={$product->itemNb}'">
               <img class="itemImg img-fluid animated fadeInUp" src="../Online_Grocery/img/$image" alt="" href="#">
             </a>
-            <p class="item name">$name per unit</p>
+            <p class="item name">$name</p>
             <p class="item price">$price</p>
             <button type="button" class="btn btn-danger">Add to Cart</button>
 
