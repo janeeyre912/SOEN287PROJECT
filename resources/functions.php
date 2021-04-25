@@ -189,12 +189,12 @@ function displayProductList()
 
     $productlist = <<<DELIMETER
     <tr role="row">
-        <td row="cell">{$product_id}</td>
-        <td row="cell">{$productName}</td>
-        <td row="cell">{$productAisle}</td>
-        <td row="cell">{$productPrice}</td>
-        <td row="cell">{$productStock}</td>
-        <td>
+        <td row="cell" class= "product">{$product_id}</td>
+        <td row="cell" class= "product">{$productName}</td>
+        <td row="cell" class= "product">{$productAisle}</td>
+        <td row="cell" class= "product">{$productPrice}</td>
+        <td row="cell" class= "product">{$productStock}</td>
+        <td class= "product">
             <button type="button" class="btn btn-sm btn-dark" onclick ="window.location.href = 'index.php?edit_product&itemNb={$product->itemNb}'">Edit</button>
             <button type="button" class="btn btn-sm btn-danger" onclick ="window.location.href = 'index.php?delete_product_id={$product->itemNb}'">Delete</button>
         </td> 

@@ -212,4 +212,12 @@ and (max-device-width: 1024px)  {
     td.item:nth-of-type(2):before { content: "Price: "; }
     td.item:nth-of-type(3):before { content: "Amount: "; }
     td.item:nth-of-type(5):before { content: ""; }
+    
+    /*label the data for products.php*/
+    td.product:nth-of-type(1):before { content: "#: "; }
+    td.product:nth-of-type(2):before { content: "Product: "; }
+    td.product:nth-of-type(3):before { content: "Asile: "; }
+    td.product:nth-of-type(4):before { content: "Price: "; }
+    td.product:nth-of-type(5):before { content: "Quantity in stock: "; }
+    td.product:nth-of-type(6):before { content: ""; }
 }
