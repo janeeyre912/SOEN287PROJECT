@@ -102,7 +102,7 @@ function search_item() {
   //Get the array of div elements that hold each product of the page.
   let productDivs = document
     .getElementById("products")
-    .getElementsByClassName("col-sm");
+    .getElementsByClassName("col-md-4");
 
   //For each product div on the page.
   for (let i = 0; i < productDivs.length; i++) {
