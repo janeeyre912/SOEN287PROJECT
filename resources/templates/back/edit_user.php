@@ -37,6 +37,7 @@ if(isset($_GET['id'])){
         }
       }
       file_put_contents('../datas/user.xml',$xml->asXML());
+      set_message("user informtion is updated.");
     }
     
 
@@ -53,6 +54,7 @@ if(isset($_GET['id'])){
     </nav>
     <!--  user information-->
     <h4>edit user</h4>
+    <h6 class="bg-success"><?php display_message(); ?></h6>
     <form class="user_info" action="" method="post" enctype="multipart/form-data">
         <div class="form-row">
             <div class="col-lg-4 mb-3">
